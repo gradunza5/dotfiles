@@ -23,6 +23,9 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
+alias l="ls -l"
+alias v="ls -la"
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
