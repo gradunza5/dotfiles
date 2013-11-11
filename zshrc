@@ -55,7 +55,11 @@ alias v="ls -la"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+if [[ uname -eq "Darwin" ]]; then
+	plugins=(git svn osx)
+else
+	plugins=(git svn)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
