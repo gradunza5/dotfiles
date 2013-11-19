@@ -26,6 +26,10 @@ alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 alias l="ls -l"
 alias v="ls -la"
 
+if [[ uname -eq "Darwin" ]]; then
+	alias updatedb="sudo /usr/libexec/locate.updatedb"
+fi
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -69,3 +73,9 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
+
+if [[ uname -eq "Darwin" ]]; then
+	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
+	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
+	export MANPATH=/usr/pkg/man:$MANPATH
+fi
