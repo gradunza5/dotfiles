@@ -77,5 +77,9 @@ export PATH=$PATH:/usr/local/qt4/bin
 if [[ uname -eq "Darwin" ]]; then
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
+	
+	# for newer subversion
+	export PATH=/opt/subversion/bin:$PATH
+
 	export MANPATH=/usr/pkg/man:$MANPATH
 fi
