@@ -7,7 +7,6 @@ set spell
 let g:solarized_termcolors=256
 set bg=dark
 colorscheme solarized
-set bg=dark
 
 " .tex files will always be latex code
 let g:tex_flavor = "latex"
@@ -20,6 +19,9 @@ let g:Tex_ViewRule_pdf="evince"
 let g:Tex_DefaultTargetFormat="pdf"
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 
+" highlight current line
+:nnoremap <Leader>c :set cursorline! <CR>
+
 " do nice soft wrapping
 set wrap
 set linebreak
@@ -29,6 +31,7 @@ set linebreak
 set shiftwidth=4
 set tabstop=4
 set smarttab
+set scrolloff=4
 
 " enable line numbering
 set number
@@ -86,10 +89,10 @@ nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
 
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 let Tlist_WinWidth = 50
 map <F4> :TlistToggle<CR>
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F8> :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " add tag files
 "set tags+=./tags
