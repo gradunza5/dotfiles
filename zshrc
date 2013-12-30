@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+# SH_THEME="robbyrussell"
 ZSH_THEME="mh"
 
 # Example aliases
@@ -26,8 +26,15 @@ alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 alias l="ls -l"
 alias v="ls -la"
 
+# vim encryption!
+alias vime="vim -u ~/.vimencrc -x"
+
 if [[ uname -eq "Darwin" ]]; then
 	alias updatedb="sudo /usr/libexec/locate.updatedb"
+	alias tmux="tmux -2"
+	alias ctags="/usr/local/bin/ctags"
+	export TERM="screen-256color"
+	export EDITOR="vim"
 fi
 
 # Set to this to use case-sensitive completion
