@@ -20,6 +20,9 @@ let g:Tex_DefaultTargetFormat="pdf"
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 
 " highlight current line
+:set cursorline
+
+" add toggle for current line highlight
 :nnoremap <Leader>c :set cursorline! <CR>
 
 " do nice soft wrapping
@@ -35,7 +38,7 @@ set scrolloff=4
 
 " enable line numbering
 set number
-set relativenumber
+"set relativenumber
 
 " keep undo history
 set hidden

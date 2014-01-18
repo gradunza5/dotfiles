@@ -13,6 +13,7 @@ ZSH_THEME="mh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wineSteam="~/code/utils/scripts/wineSteam.sh"
 alias steam="~/code/utils/scripts/steam.sh"
+alias wow="~/code/utils/scripts/wow.sh"
 
 alias gw2="~/code/utils/scripts/gw2.sh"
 
@@ -35,8 +36,6 @@ if [[ uname == "Darwin" ]]; then
 	alias ctags="/usr/local/bin/ctags"
 	export TERM="screen-256color"
 	export EDITOR="vim"
-
-	echo "wat wat wat"
 fi
 
 # Set to this to use case-sensitive completion
