@@ -19,7 +19,10 @@ let g:Tex_ViewRule_pdf="evince"
 let g:Tex_DefaultTargetFormat="pdf"
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 
-" highlight current line
+" highlight current line by default
+:set cursorline
+
+" add binding to toggle it
 :nnoremap <Leader>c :set cursorline! <CR>
 
 " do nice soft wrapping
