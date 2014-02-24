@@ -33,7 +33,7 @@ if [[ `uname` == "Darwin" ]]; then
 	alias updatedb="sudo /usr/libexec/locate.updatedb"
 	alias tmux="tmux -2"
 	alias ctags="/usr/local/bin/ctags"
-	export TERM="screen-256color"
+	#export TERM="screen-256color"
 	export EDITOR="vim"
 
 	echo "wat"
