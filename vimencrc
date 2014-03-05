@@ -1,0 +1,16 @@
+source ~/.vimrc
+set nobackup
+set noswapfile
+set nowritebackup
+set viminfo=
+set noshelltemp
+set history=0
+set undofile=
+set secure
+set cm=blowfish
+
+set fdm=indent
+set fdn=1
+set sw=2
+
+colorscheme monokai
