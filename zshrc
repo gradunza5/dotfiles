@@ -91,3 +91,5 @@ if [[ `uname` == "Darwin" ]]; then
 	export MANPATH=/usr/pkg/man:$MANPATH
 
 fi
+
+source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

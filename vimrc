@@ -38,7 +38,7 @@ set scrolloff=4
 
 " enable line numbering
 set number
-set relativenumber
+" set relativenumber
 
 " keep undo history
 set hidden
