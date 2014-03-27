@@ -92,4 +92,5 @@ if [[ `uname` == "Darwin" ]]; then
 
 fi
 
-source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/dotfiles/syntax.zsh
