@@ -30,11 +30,11 @@ alias v="ls -la"
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
 
-if [[ uname == "Darwin" ]]; then
+if [[ `uname` == "Darwin" ]]; then
 	alias updatedb="sudo /usr/libexec/locate.updatedb"
 	alias tmux="tmux -2"
 	alias ctags="/usr/local/bin/ctags"
-	export TERM="screen-256color"
+	#export TERM="screen-256color"
 	export EDITOR="vim"
 fi
 
@@ -67,7 +67,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-if [[ uname == "Darwin" ]]; then
+if [[ `uname` == "Darwin" ]]; then
 	plugins=(git svn osx)
 else
 	plugins=(git svn)
@@ -82,7 +82,7 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
-if [[ uname == "Darwin" ]]; then
+if [[ `uname` == "Darwin" ]]; then
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
 	
@@ -90,4 +90,7 @@ if [[ uname == "Darwin" ]]; then
 	export PATH=/opt/subversion/bin:$PATH
 
 	export MANPATH=/usr/pkg/man:$MANPATH
+
 fi
+
+source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
