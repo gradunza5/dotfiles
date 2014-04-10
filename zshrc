@@ -6,13 +6,14 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # SH_THEME="robbyrussell"
-ZSH_THEME="mh"
+#ZSH_THEME="mh"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wineSteam="~/code/utils/scripts/wineSteam.sh"
 alias steam="~/code/utils/scripts/steam.sh"
+alias wow="~/code/utils/scripts/wow.sh"
 
 alias gw2="~/code/utils/scripts/gw2.sh"
 
@@ -92,5 +93,9 @@ if [[ `uname` == "Darwin" ]]; then
 
 fi
 
+# for syntax
 #source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/syntax.zsh
+
+# mh theme configured to show hostname
+source ~/dotfiles/zsh-prompt.zsh
