@@ -24,8 +24,8 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
-alias l="ls -l"
-alias v="ls -la"
+alias l="ls -lh"
+alias v="ls -lah"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
