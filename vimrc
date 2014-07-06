@@ -1,11 +1,11 @@
 " enable syntax highlighting
-syntax on
+syntax enable
 
 "spell check
 set spell
 
-let g:solarized_termcolors=256
-set bg=dark
+" let g:solarized_termcolors=256
+set background=dark
 colorscheme solarized
 
 " .tex files will always be latex code
