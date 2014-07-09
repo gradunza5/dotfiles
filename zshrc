@@ -15,6 +15,8 @@ alias wineSteam="~/code/utils/scripts/wineSteam.sh"
 alias steam="~/code/utils/scripts/steam.sh"
 alias wow="~/code/utils/scripts/wow.sh"
 
+alias cam="guvcview"
+
 alias gw2="~/code/utils/scripts/gw2.sh"
 
 alias x="exit"
@@ -24,8 +26,8 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
-alias l="ls -l"
-alias v="ls -la"
+alias l="ls -lh"
+alias v="ls -lah"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
