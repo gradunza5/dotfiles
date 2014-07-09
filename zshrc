@@ -95,6 +95,9 @@ if [[ `uname` == "Darwin" ]]; then
 
 fi
 
-source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# for syntax
+#source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/dotfiles/syntax.zsh
 
+# mh theme configured to show hostname
 source ~/dotfiles/zsh-prompt.zsh
