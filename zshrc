@@ -101,3 +101,5 @@ source ~/dotfiles/syntax.zsh
 
 # mh theme configured to show hostname
 source ~/dotfiles/zsh-prompt.zsh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

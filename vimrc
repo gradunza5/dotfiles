@@ -1,3 +1,6 @@
+" Pathogen
+execute pathogen#infect()
+
 " enable syntax highlighting
 syntax enable
 
