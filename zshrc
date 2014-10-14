@@ -15,6 +15,8 @@ alias wineSteam="~/code/utils/scripts/wineSteam.sh"
 alias steam="~/code/utils/scripts/steam.sh"
 alias wow="~/code/utils/scripts/wow.sh"
 
+alias cam="guvcview"
+
 alias gw2="~/code/utils/scripts/gw2.sh"
 
 alias x="exit"
