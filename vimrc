@@ -124,3 +124,18 @@ set laststatus=2
 
 " Some fancy keymappings
 imap jk <Esc>
+
+
+" gui or non-gui font sizes
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h11
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
+" odd filetypes
+au BufNewFile,BufRead *.master set filetype=html
