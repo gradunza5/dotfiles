@@ -1,6 +1,9 @@
 " Pathogen
 execute pathogen#infect()
 
+" for powerline fonts
+let g:airline_powerline_fonts = 1
+
 " enable syntax highlighting
 syntax enable
 
@@ -134,7 +137,7 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h11
+    set guifont=Meslo\ LG\ S\ for\ Powerline:h11
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   endif
