@@ -32,14 +32,6 @@ alias v="ls -lah"
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
 
-if [[ `uname` == "Darwin" ]]; then
-	alias updatedb="sudo /usr/libexec/locate.updatedb"
-	alias tmux="tmux -2"
-	alias ctags="/usr/local/bin/ctags"
-	#export TERM="screen-256color"
-	export EDITOR="vim"
-fi
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -77,6 +69,12 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+# for syntax
+source ~/dotfiles/syntax.zsh
+
+# mh theme configured to show hostname
+source ~/dotfiles/zsh-prompt.zsh
+
 # Customize to your needs...
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
@@ -84,6 +82,10 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
+# for ruby?
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# some mac stuff
 if [[ `uname` == "Darwin" ]]; then
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
@@ -93,13 +95,11 @@ if [[ `uname` == "Darwin" ]]; then
 
 	export MANPATH=/usr/pkg/man:$MANPATH
 
+	alias updatedb="sudo /usr/libexec/locate.updatedb"
+	alias tmux="tmux -2"
+	alias ctags="/usr/local/bin/ctags"
+	export EDITOR="vim"
 fi
 
-# for syntax
-#source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/dotfiles/syntax.zsh
-
-# mh theme configured to show hostname
-source ~/dotfiles/zsh-prompt.zsh
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# for dircolors
+eval $(dircolors ~/.dircolors)
