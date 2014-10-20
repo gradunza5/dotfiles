@@ -26,36 +26,11 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
-alias l="ls -lh --color=always"
-alias v="ls -lah --color=always"
-
-alias grep="grep --color=always"
-alias egrep="egrep --color=always"
+alias l="ls -lh"
+alias v="ls -lah"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
-
-if [[ `uname` == "Darwin" ]]; then
-	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
-	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
-	
-	# for newer subversion
-	export PATH=/opt/subversion/bin:$PATH
-
-	# for gnu coreutils
-	export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-	export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
-
-	export MANPATH=/usr/pkg/man:$MANPATH
-
-	alias updatedb="sudo /usr/libexec/locate.updatedb"
-	alias tmux="tmux -2"
-	alias ctags="/usr/local/bin/ctags"
-
-	export EDITOR="vim"
-
-fi
-
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -94,6 +69,12 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+# for syntax
+source ~/dotfiles/syntax.zsh
+
+# mh theme configured to show hostname
+source ~/dotfiles/zsh-prompt.zsh
+
 # Customize to your needs...
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
@@ -101,13 +82,29 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
-# for syntax
-#source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/dotfiles/syntax.zsh
-
-# mh theme configured to show hostname
-source ~/dotfiles/zsh-prompt.zsh
-
+# for ruby?
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-eval `dircolors ~/.dircolors`
+# some mac stuff
+if [[ `uname` == "Darwin" ]]; then
+	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
+	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
+	
+	# for newer subversion
+	export PATH=/opt/subversion/bin:$PATH
+
+    # for gnu ls and things
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+
+	export MANPATH=/usr/pkg/man:$MANPATH
+
+	alias updatedb="sudo /usr/libexec/locate.updatedb"
+	alias tmux="tmux -2"
+	alias ctags="/usr/local/bin/ctags"
+	export EDITOR="vim"
+fi
+
+# for dircolors
+eval $(dircolors ~/.dircolors)

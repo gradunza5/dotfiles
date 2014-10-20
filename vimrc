@@ -34,9 +34,10 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 " do nice soft wrapping
 set wrap
 set linebreak
+"set breakindent "for better wrapped indenting?
 
 " set tabs->4 spaces
-" set expandtab
+set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
@@ -67,6 +68,7 @@ set smartcase
 
 " show matching bracket
 set showmatch
+
 "blink time
 set mat=2  
 
