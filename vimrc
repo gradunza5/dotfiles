@@ -34,7 +34,7 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 " do nice soft wrapping
 set wrap
 set linebreak
-set breakindent "for better wrapped indenting?
+"set breakindent "for better wrapped indenting?
 
 " set tabs->4 spaces
 set expandtab
