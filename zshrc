@@ -26,8 +26,8 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
-alias l="ls -lh"
-alias v="ls -lah"
+alias l="ls -lh --color=auto"
+alias v="ls -lah --color=auto"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
@@ -62,9 +62,9 @@ alias vime="vim -u ~/.vimencrc -x"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ `uname` == "Darwin" ]]; then
-	plugins=(git svn osx)
+	plugins=(git svn osx taskwarrior)
 else
-	plugins=(git svn)
+	plugins=(git svn taskwarrior)
 fi
 
 source $ZSH/oh-my-zsh.sh
