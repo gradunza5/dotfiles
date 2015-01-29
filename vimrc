@@ -4,11 +4,19 @@ execute pathogen#infect()
 " for powerline fonts
 let g:airline_powerline_fonts = 1
 
+" for c++ cyntastic?
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+" for NERDTree
+map <Leader>t :NERDTreeToggle<CR>
+
 " enable syntax highlighting
 syntax enable
 
 "spell check
-set spell
+" set spell
+set nospell
 
 " let g:solarized_termcolors=256
 set background=dark
@@ -133,13 +141,14 @@ set laststatus=2
 " Some fancy keymappings
 imap jk <Esc>
 
-
 " gui or non-gui font sizes
 if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
     set guifont=Meslo\ LG\ S\ for\ Powerline:h11
+    set guioptions-=r
+    set guioptions-=L
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   endif
