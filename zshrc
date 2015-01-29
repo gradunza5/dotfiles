@@ -12,7 +12,7 @@ ZSH=$HOME/.oh-my-zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wineSteam="~/code/utils/scripts/wineSteam.sh"
-alias steam="~/code/utils/scripts/steam.sh"
+#alias steam="~/code/utils/scripts/steam.sh"
 alias wow="~/code/utils/scripts/wow.sh"
 
 alias cam="guvcview"
