@@ -133,7 +133,6 @@ set laststatus=2
 " Some fancy keymappings
 imap jk <Esc>
 
-
 " gui or non-gui font sizes
 if has("gui_running")
   if has("gui_gtk2")
