@@ -1,11 +1,25 @@
+" Pathogen
+execute pathogen#infect()
+
+" for powerline fonts
+let g:airline_powerline_fonts = 1
+
+" for c++ cyntastic?
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+" for NERDTree
+map <Leader>t :NERDTreeToggle<CR>
+
 " enable syntax highlighting
-syntax on
+syntax enable
 
 "spell check
-set spell
+" set spell
+set nospell
 
-let g:solarized_termcolors=256
-set bg=dark
+" let g:solarized_termcolors=256
+set background=dark
 colorscheme solarized
 
 " .tex files will always be latex code
@@ -28,9 +42,10 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 " do nice soft wrapping
 set wrap
 set linebreak
+"set breakindent "for better wrapped indenting?
 
 " set tabs->4 spaces
-" set expandtab
+set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
@@ -61,6 +76,7 @@ set smartcase
 
 " show matching bracket
 set showmatch
+
 "blink time
 set mat=2  
 
@@ -121,3 +137,22 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 set laststatus=2
+
+" Some fancy keymappings
+imap jk <Esc>
+
+" gui or non-gui font sizes
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Meslo\ LG\ S\ for\ Powerline:h11
+    set guioptions-=r
+    set guioptions-=L
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
+" odd filetypes
+au BufNewFile,BufRead *.master set filetype=html

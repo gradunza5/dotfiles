@@ -12,8 +12,10 @@ ZSH=$HOME/.oh-my-zsh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wineSteam="~/code/utils/scripts/wineSteam.sh"
-alias steam="~/code/utils/scripts/steam.sh"
+#alias steam="~/code/utils/scripts/steam.sh"
 alias wow="~/code/utils/scripts/wow.sh"
+
+alias cam="guvcview"
 
 alias gw2="~/code/utils/scripts/gw2.sh"
 
@@ -24,24 +26,20 @@ alias config="vim ~/.xmonad/xmonad.hs"
 
 alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
 
-alias l="ls -l"
-alias v="ls -la"
+alias l="ls -lh --color=auto"
+alias v="ls -lah --color=auto"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
 
-if [[ `uname` == "Darwin" ]]; then
-	alias updatedb="sudo /usr/libexec/locate.updatedb"
-	alias tmux="tmux -2"
-	alias ctags="/usr/local/bin/ctags"
-	#export TERM="screen-256color"
-	export EDITOR="vim"
-
-	echo "wat"
-fi
+# ctrl-backspace?
+bindkey '^K' backward-kill-word
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
+
+# ZSH Won't prompt for update, it'll just do it and probably fail.
+DISABLE_UPDATE_PROMPT=true
 
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -70,12 +68,18 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ `uname` == "Darwin" ]]; then
-	plugins=(git svn osx)
+	plugins=(git svn osx taskwarrior)
 else
-	plugins=(git svn)
+	plugins=(git svn taskwarrior)
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+# for syntax
+source ~/dotfiles/syntax.zsh
+
+# mh theme configured to show hostname
+source ~/dotfiles/zsh-prompt.zsh
 
 # Customize to your needs...
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl
@@ -84,6 +88,10 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
+# for ruby?
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# some mac stuff
 if [[ `uname` == "Darwin" ]]; then
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
@@ -91,13 +99,24 @@ if [[ `uname` == "Darwin" ]]; then
 	# for newer subversion
 	export PATH=/opt/subversion/bin:$PATH
 
+    # for gnu ls and things
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+
 	export MANPATH=/usr/pkg/man:$MANPATH
 
+	alias updatedb="sudo /usr/libexec/locate.updatedb"
+	alias tmux="tmux -2"
+	alias ctags="/usr/local/bin/ctags"
+	export EDITOR="vim"
+
+     #Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
+     export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
+     if [ -d "$GHC_DOT_APP" ]; then
+         export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+     fi
 fi
 
-# for syntax
-#source ~/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/dotfiles/syntax.zsh
-
-# mh theme configured to show hostname
-source ~/dotfiles/zsh-prompt.zsh
+# for dircolors
+eval $(dircolors ~/.dircolors)
