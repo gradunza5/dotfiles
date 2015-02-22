@@ -32,8 +32,14 @@ alias v="ls -lah --color=auto"
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
 
+# ctrl-backspace?
+bindkey '^K' backward-kill-word
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
+
+# ZSH Won't prompt for update, it'll just do it and probably fail.
+DISABLE_UPDATE_PROMPT=true
 
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
