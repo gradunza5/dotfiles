@@ -14,6 +14,10 @@ map <Leader>t :NERDTreeToggle<CR>
 " enable syntax highlighting
 syntax enable
 
+" split defaults
+set splitbelow
+set splitright
+
 "spell check
 " set spell
 set nospell

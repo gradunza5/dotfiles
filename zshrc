@@ -88,8 +88,12 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
-# for ruby?
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# for ruby? Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin 
+
+# for go
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin
 
 # some mac stuff
 if [[ `uname` == "Darwin" ]]; then
