@@ -123,10 +123,6 @@ set nospell
 set background=dark
 colorscheme solarized
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9fc095580bd54a07f89e032b8e9690997a838924
 " highlight current line
 set cursorline
 
@@ -206,14 +202,6 @@ nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
 
-<<<<<<< HEAD
-let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
-let Tlist_WinWidth = 50
-map <F4> :TlistToggle<CR>
-map <F8> :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-=======
->>>>>>> 9fc095580bd54a07f89e032b8e9690997a838924
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "set completeopt=menuone,menu,longest,preview
@@ -232,15 +220,7 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
-<<<<<<< HEAD
-    set guifont=Meslo\ LG\ S\ for\ Powerline:h14
-    set guioptions-=r
-    set guioptions-=L
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-=======
  	set gfn=Monaco:h12
->>>>>>> 9fc095580bd54a07f89e032b8e9690997a838924
   endif
 endif
 
