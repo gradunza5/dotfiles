@@ -1,12 +1,25 @@
 " Pathogen
 execute pathogen#infect()
 
+set nocompatible
+
+" for vimwiki
+let wiki_work = {}
+let wiki_work.path = '~/Sync/work/wiki/'
+let wiki_work.path_html = '~/Sync/work/wiki/html/'
+let wiki_work.syntax = 'markdown'
+let wiki_work.ext = 'md'
+
+let wiki_me = {}
+let wiki_me.path = '~/Sync/me/wiki/'
+let wiki_me.path_html = '~/Sync/me/wiki/html/'
+let wiki_me.syntax = 'markdown'
+let wiki_me.ext = 'md'
+
+let g:vimwiki_list = [wiki_me, wiki_work]
+
 " for powerline fonts
 let g:airline_powerline_fonts = 1
-
-" for c++ cyntastic?
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 " for NERDTree
 map <Leader>t :NERDTreeToggle<CR>
@@ -26,22 +39,12 @@ set nospell
 set background=dark
 colorscheme solarized
 
-" .tex files will always be latex code
-let g:tex_flavor = "latex"
-
-" don't mess with "
-let g:Tex_SmartKeyQuote=0
-
-" latex compile/viewing rules
-let g:Tex_ViewRule_pdf="evince"
-let g:Tex_DefaultTargetFormat="pdf"
-let g:Tex_MultipleCompileFormats='dvi,pdf'
 
 " highlight current line
-:set cursorline
+set cursorline
 
 " add toggle for current line highlight
-:nnoremap <Leader>c :set cursorline! <CR>
+nnoremap <Leader>c :set cursorline! <CR>
 
 " do nice soft wrapping
 set wrap
@@ -70,6 +73,9 @@ set undodir=~/.vim/undo
 set nocp
 filetype plugin on
 filetype indent on
+
+" omnicomplete
+set omnifunc=syntaxcomplete#Complete
 
 " enable auto re-read if changed
 set autoread
@@ -117,25 +123,6 @@ let Tlist_WinWidth = 50
 map <F4> :TlistToggle<CR>
 map <F8> :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" add tag files
-"set tags+=./tags
-"set tags+=/home/ben/.vim_tags/usr_include_tags
-"set tags+=/home/ben/.vim/tags/bullet
-"set tags+=/home/ben/.vim/tags/cpp
-"set tags+=/home/ben/.vim/tags/gl
-"set tags+=/home/ben/.vim/tags/sdl
-"set tags+=/home/ben/.vim/tags/assimp
-
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
@@ -150,7 +137,7 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
-    set guifont=Meslo\ LG\ S\ for\ Powerline:h11
+    set guifont=Meslo\ LG\ S\ for\ Powerline:h14
     set guioptions-=r
     set guioptions-=L
   elseif has("gui_win32")
