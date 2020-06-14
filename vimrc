@@ -9,22 +9,26 @@ call plug#begin('~/.vim/plugged')
 Plug 'mileszs/ack.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'ap/vim-buftabline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'inside/vim-grep-operator'
 Plug 'easymotion/vim-easymotion'
 Plug 'vimwiki/vimwiki'
+Plug 'OrangeT/vim-csharp'
 
 call plug#end()
 
 " Powerline
 " ============================================================================================
 "let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+"let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
+
+" lightline
+" ============================================================================================
+"set noshowmode
 
 " for NERDTree
 " ============================================================================================
@@ -41,27 +45,29 @@ nnoremap <leader>d :bp<cr>:bd #<cr>
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_folding='expr'
 
 " vimwiki 
 let wiki_1 = {}
-let wiki_1.path = '~/Sync/work/wiki/'
-let wiki_1.path_html = '~/Sync/work/wiki/html/'
+let wiki_1.path = '~/CloudStation/work/wiki/'
+let wiki_1.path_html = '~/CloudStation/work/wiki/html/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
 let wiki_1.custom_wiki2html = '~/code/scripts/misaka_md2html.py'
 let wiki_1.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
 
 let wiki_2 = {}
-let wiki_2.path = '~/Sync/me/wiki/'
-let wiki_2.path_html = '~/Sync/me/wiki/html/'
+let wiki_2.path = '~/CloudStation/me/wiki/'
+let wiki_2.path_html = '~/CloudStation/me/wiki/html/'
 let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 let wiki_2.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
 
 let wiki_3 = {}
-let wiki_3.path = '~/vimwiki/me/wiki/'
-let wiki_3.path_html = '~/vimwiki/me/wiki/html/'
-let wiki_3.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
+let wiki_3.path = '~/CloudStation/dnd/wiki'
+let wiki_3.path_html = '~/CloudStation/dnd/wiki/html'
+let wiki_3.syntax = 'markdown'
+let wiki_3.ext = '.md'
 
 let g:vimwiki_list = [wiki_1, wiki_2, wiki_3]
 
@@ -216,7 +222,7 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
- 	set gfn=Monaco:h12
+ 	set gfn=Monego:h12
   endif
 endif
 
