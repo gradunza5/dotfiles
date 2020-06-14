@@ -47,25 +47,26 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_folding='expr'
 
+set nocompatible
+
 " vimwiki 
 let wiki_1 = {}
-let wiki_1.path = '~/CloudStation/work/wiki/'
-let wiki_1.path_html = '~/CloudStation/work/wiki/html/'
+let wiki_1.path = '~/Drive/Drive/me/wiki/'
+let wiki_1.path_html = '~/Drive/Drive/me/wiki/html/'
 let wiki_1.syntax = 'markdown'
 let wiki_1.ext = '.md'
-let wiki_1.custom_wiki2html = '~/code/scripts/misaka_md2html.py'
 let wiki_1.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
 
 let wiki_2 = {}
-let wiki_2.path = '~/CloudStation/me/wiki/'
-let wiki_2.path_html = '~/CloudStation/me/wiki/html/'
+let wiki_2.path = '~/Drive/Drive/work/wiki/'
+let wiki_2.path_html = '~/Drive/Drive/work/wiki/html/'
 let wiki_2.syntax = 'markdown'
 let wiki_2.ext = '.md'
 let wiki_2.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
 
 let wiki_3 = {}
-let wiki_3.path = '~/CloudStation/dnd/wiki'
-let wiki_3.path_html = '~/CloudStation/dnd/wiki/html'
+let wiki_3.path = '~/Drive/Drive/dnd/wiki/'
+let wiki_3.path_html = '~/Drive/Drive/dnd/wiki/html/'
 let wiki_3.syntax = 'markdown'
 let wiki_3.ext = '.md'
 
@@ -129,10 +130,10 @@ set background=dark
 colorscheme solarized
 
 " highlight current line
-:set cursorline
+set cursorline
 
 " add toggle for current line highlight
-:nnoremap <Leader>c :set cursorline! <CR>
+nnoremap <Leader>c :set cursorline! <CR>
 
 " do nice soft wrapping
 set wrap
@@ -162,6 +163,9 @@ set undodir=~/.vim/undo
 set nocp
 filetype plugin on
 filetype indent on
+
+" omnicomplete
+set omnifunc=syntaxcomplete#Complete
 
 " enable auto re-read if changed
 set autoread

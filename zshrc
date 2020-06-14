@@ -22,12 +22,8 @@ alias gw2="~/code/utils/scripts/gw2.sh"
 alias x="exit"
 alias sd="sudo shutdown -h now"
 
-alias config="vim ~/.xmonad/xmonad.hs"
-
-alias bootwin="/home/ben/code/utils/scripts/bootwin.sh"
-
-alias l="ls -lh --color=auto"
-alias v="ls -lah --color=auto"
+alias l="ls -lh"
+alias v="ls -lah"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
@@ -107,7 +103,6 @@ if [[ `uname` == "Darwin" ]]; then
     PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-
 	export MANPATH=/usr/pkg/man:$MANPATH
 
 	alias updatedb="sudo /usr/libexec/locate.updatedb"
@@ -123,4 +118,4 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 # for dircolors
-eval $(dircolors ~/.dircolors)
+#eval $(dircolors ~/.dircolors)
