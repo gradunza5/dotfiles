@@ -10,6 +10,10 @@ call plug#begin(stdpath('data') . '/plugged')
 
 "colors
 Plug 'altercation/vim-colors-solarized'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'rakr/vim-two-firewatch'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'lifepillar/vim-solarized8'
 
 " Buffer Management
 Plug 'qpkorr/vim-bufkill'
@@ -21,14 +25,14 @@ Plug 'OmniSharp/omnisharp-vim'
 " Linting
 Plug 'dense-analysis/ale'
 
-" Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Statusline
 Plug 'itchyny/lightline.vim'
 
 " Vimwiki
 Plug 'vimwiki/vimwiki'
+
+" Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Auto-Install Plugins
 if _is_first_plug_install == 1
@@ -46,36 +50,39 @@ let g:vimwiki_markdown_link_ext = 1
 let g:vimwiki_folding='expr'
 
 let wiki_work = {}
-let wiki_work.path = '~/CloudStation/work/wiki/'
-let wiki_work.path_html = '~/CloudStation/work/wiki/html/'
+let wiki_work.path = '~/Drive/Drive/work/wiki/'
+let wiki_work.path_html = '~/Drive/Drive/work/wiki/html/'
 let wiki_work.syntax = 'markdown'
 let wiki_work.ext = '.md'
-let wiki_work.template_path = '~/CloudStation/work/wiki/templates/'
+let wiki_work.template_path = '~/Drive/Drive/work/wiki/templates/'
 let wiki_work.template_default = 'default'
 let wiki_work.template_ext = '.tpl'
 let wiki_work.custom_wiki2html = 'vimwiki_markdown'
 let wiki_work.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
+let wiki_work.auto_tags = 1
 
 let wiki_me = {}
-let wiki_me.path = '~/CloudStation/me/wiki/'
-let wiki_me.path_html = '~/CloudStation/me/wiki/html/'
+let wiki_me.path = '~/Drive/Drive/me/wiki/'
+let wiki_me.path_html = '~/Drive/Drive/me/wiki/html/'
 let wiki_me.syntax = 'markdown'
 let wiki_me.ext = '.md'
-let wiki_me.template_path = '~/CloudStation/me/wiki/templates/'
+let wiki_me.template_path = '~/Drive/Drive/me/wiki/templates/'
 let wiki_me.template_default = 'default'
 let wiki_me.template_ext = '.tpl'
 let wiki_me.custom_wiki2html = 'vimwiki_markdown'
 let wiki_me.nested_syntaxes = {'ruby': 'ruby', 'python': 'python', 'c++': 'cpp', 'cpp': 'cpp', 'sh': 'sh', 'cs': 'cs'}
+let wiki_me.auto_tags = 1
 
 let wiki_dnd = {}
-let wiki_dnd.path = '~/CloudStation/dnd/wiki'
-let wiki_dnd.path_html = '~/CloudStation/dnd/wiki/html'
+let wiki_dnd.path = '~/Drive/Drive/dnd/wiki'
+let wiki_dnd.path_html = '~/Drive/Drive/dnd/wiki/html'
 let wiki_dnd.syntax = 'markdown'
 let wiki_dnd.ext = '.md'
-let wiki_dnd.template_path = '~/CloudStation/dnd/wiki/templates/'
+let wiki_dnd.template_path = '~/Drive/Drive/dnd/wiki/templates/'
 let wiki_dnd.template_default = 'default'
 let wiki_dnd.template_ext = '.tpl'
 let wiki_dnd.custom_wiki2html = 'vimwiki_markdown'
+let wiki_dnd.auto_tags = 1
 
 let g:vimwiki_list = [wiki_me, wiki_work, wiki_dnd]
 
@@ -242,7 +249,8 @@ nmap <silent> <Space>K <Plug>(coc-diagnostic-prev-error)
 " Solarized
 " =============================================================================
 " colors
-colorscheme solarized
+set termguicolors
+colorscheme solarized8
 
 " =============================================================================
 " Bufkill

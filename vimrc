@@ -7,6 +7,20 @@ set background=dark
 " easier than reaching for Escape
 imap jk <Esc>
 
+" absolute movement
+nmap j gj
+nmap k gk
+
+" copy/paste
+nmap <leader>v "+gp
+imap <leader>v <esc>"+gpa
+vmap <leader>c "+y
+vmap <leader>y "+y
+
+" open new split panes to right and below
+set splitright
+set splitbelow
+
 " cursorline
 set cursorline
 
