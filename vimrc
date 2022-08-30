@@ -32,6 +32,12 @@ set nu rnu " hybrid numbers
 map <right> :bn<cr>
 map <left> :bp<cr>
 
+" window movement
+noremap <C-J> <C-W>w
+noremap <C-K> <C-W>W
+noremap <C-L> <C-W>l
+noremap <C-H> <C-W>h
+
 " tabs and spaces and whatnot
 set expandtab
 set shiftwidth=4
@@ -47,6 +53,9 @@ set autoread
 " split defaults
 set splitbelow
 set splitright
+
+" toggle search highlight
+nnoremap <silent><expr> <Leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
 " Netrw (file explorer) setup; NERDTree-ish
 let g:netrw_banner = 0
@@ -66,6 +75,10 @@ set linebreak
 
 " ignore case in files and folders
 set wildignorecase
+
+" config mappings
+nnoremap <leader>vc :e $MYVIMRC<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR>
 
 " Limit git commit length
 au FileType gitcommit setlocal tw=72

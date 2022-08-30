@@ -64,7 +64,7 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ `uname` == "Darwin" ]]; then
-	plugins=(git svn osx taskwarrior)
+	plugins=(git svn macos taskwarrior)
 else
 	plugins=(git svn taskwarrior)
 fi
@@ -120,4 +120,26 @@ fi
 # for dircolors
 #eval $(dircolors ~/.dircolors)
 
+#android tools
+export ANDROID_HOME=/Users/benreeves/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/android
+export PATH=$PATH:$ANDROID_HOME/platforms
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#java home
+export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
+export JAVA_HOME=$JAVA_13_HOME
+
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$PATH:/Users/benreeves/Code/flutter/bin"
+
+alias x="exit"
+
+alias l="ls -lh --color=auto"
+alias v="ls -lah --color=auto"
+
+alias gs="git status"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
