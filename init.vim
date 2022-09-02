@@ -5,7 +5,11 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Linting
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
+
+"fzf - installed with brew.
+"Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " PlantUML
 Plug 'aklt/plantuml-syntax' " syntax
@@ -41,10 +45,14 @@ Plug 'vimwiki/vimwiki'
 " File Tree
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
+" Easymotion - https://github.com/easymotion/vim-easymotion
+Plug 'easymotion/vim-easymotion'
+
 "icons - KEEP ME AS THE LAST PLUGIN
 Plug 'ryanoasis/vim-devicons'
 
-let g:ale_disable_lsp = 1
+" keep this in order for ale to play nice with coc
+"let g:ale_disable_lsp = 1
 
 call plug#end()
 
@@ -98,11 +106,14 @@ let g:vimwiki_list = [wiki_me, wiki_work, wiki_dnd]
 " =============================================================================
 " for tips on using CoC and ALE, https://github.com/dense-analysis/ale#5iii-how-can-i-use-ale-and-cocnvim-together
 
-nmap <silent> <C-K> <Plug>(ale_previous_wrap)
-nmap <silent> <C-J> <Plug>(ale_next_wrap)
+"nmap <silent> <C-K> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-J> <Plug>(ale_next_wrap)
 
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+"let g:ale_set_loclist = 0
+"let g:ale_set_quickfix = 1
+
+"let g:ale_sign_error = '>>'
+"let g:ale_sign_warning = '--'
 
 " =============================================================================
 " COC
@@ -219,16 +230,33 @@ au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
 " ============================================================================
 " keybinds: https://github.com/ms-jpq/chadtree/blob/chad/docs/KEYBIND.md
 nnoremap <leader>o <cmd>CHADopen<cr>
+nnoremap <leader>e <cmd>CHADopen<cr>
+
+" =============================================================================
+" FZF
+" ============================================================================
+nnoremap <c-p> :FZF<CR>
 
 " =============================================================================
 " autoclose some things
 " ============================================================================
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap [ []<left>
-inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" =============================================================================
+" EasyMotion
+" ============================================================================
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 " =============================================================================
 " General
