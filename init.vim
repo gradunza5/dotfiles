@@ -10,12 +10,16 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "fzf - installed with brew.
 "Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+"ag - make sure silver_searcher installed with brew.
+Plug 'mileszs/ack.vim'
 
 " PlantUML
 Plug 'aklt/plantuml-syntax' " syntax
 Plug 'tyru/open-browser.vim' " opens previews in browser
 Plug 'weirongxu/plantuml-previewer.vim' " PlantUML diagram previewing and generation support
-"
+
 " C# Support
 Plug 'OmniSharp/omnisharp-vim'
 
@@ -43,8 +47,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'vimwiki/vimwiki'
 
 " File Tree
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+ 
 " Easymotion - https://github.com/easymotion/vim-easymotion
 Plug 'easymotion/vim-easymotion'
 
@@ -114,6 +118,11 @@ let g:vimwiki_list = [wiki_me, wiki_work, wiki_dnd]
 
 "let g:ale_sign_error = '>>'
 "let g:ale_sign_warning = '--'
+
+" =============================================================================
+" OmniSharp
+" =============================================================================
+" Configured in ~/.config/nvim/ftplugin/cs.vim
 
 " =============================================================================
 " COC
@@ -202,9 +211,41 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+
+" =============================================================================
+" LightLine
+" ============================================================================
+
+" add Coc integration
+  let g:lightline = {
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'cocstatus': 'coc#status'
+	\ },
+	\ }
+  
+  " Use autocmd to force lightline update.
+  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 " =============================================================================
 " Solarized
+" =============================================================================
 " colors
 set termguicolors
 colorscheme solarized8
@@ -235,13 +276,27 @@ nnoremap <leader>e <cmd>CHADopen<cr>
 " =============================================================================
 " FZF
 " ============================================================================
-nnoremap <c-p> :FZF<CR>
+nnoremap <c-p> :Files<CR>
+
+nnoremap <silent> <Leader>r :Rg <C-R><C-W><CR>
+
+" =============================================================================
+" ack
+" ============================================================================
+" use rg
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+endif
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<CR>
+nnoremap <Leader>A :Ack!<SPACE>
 
 " =============================================================================
 " autoclose some things
 " ============================================================================
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
 
 " =============================================================================
 " EasyMotion

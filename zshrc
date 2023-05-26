@@ -11,19 +11,6 @@ ZSH=$HOME/.oh-my-zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias wineSteam="~/code/utils/scripts/wineSteam.sh"
-#alias steam="~/code/utils/scripts/steam.sh"
-alias wow="~/code/utils/scripts/wow.sh"
-
-alias cam="guvcview"
-
-alias gw2="~/code/utils/scripts/gw2.sh"
-
-alias x="exit"
-alias sd="sudo shutdown -h now"
-
-alias l="ls -lh"
-alias v="ls -lah"
 
 # vim encryption!
 alias vime="vim -u ~/.vimencrc -x"
@@ -77,10 +64,6 @@ source ~/dotfiles/syntax.zsh
 # mh theme configured to show hostname
 source ~/dotfiles/zsh-prompt.zsh
 
-# Customize to your needs...
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/vendor_perl:/usr/bin/core_perl
-export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
-
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
 
@@ -90,6 +73,9 @@ export PATH=$PATH:$HOME/.rvm/bin
 # for go
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
+
+# for dotnet tools
+export PATH="$PATH:/Users/benreeves/.dotnet/tools"
 
 # some mac stuff
 if [[ `uname` == "Darwin" ]]; then
@@ -127,9 +113,18 @@ export PATH=$PATH:$ANDROID_HOME/tools/android
 export PATH=$PATH:$ANDROID_HOME/platforms
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# react wants this, I guess
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+#add maven to path
+export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
+
 #java home
 export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
 export JAVA_HOME=$JAVA_13_HOME
+export JDK_HOME=$JAVA_13_HOME
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="$PATH:/Users/benreeves/Code/flutter/bin"
@@ -140,6 +135,11 @@ alias l="ls -lh --color=auto"
 alias v="ls -lah --color=auto"
 
 alias gs="git status"
+
+alias mux="tmuxinator"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/mine/code/fzf-git.sh/fzf-git.sh ] && source ~/mine/code/fzf-git.sh/fzf-git.sh
