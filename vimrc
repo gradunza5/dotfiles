@@ -76,6 +76,9 @@ set linebreak
 " ignore case in files and folders
 set wildignorecase
 
+" ignore case in text search
+set ignorecase
+
 " config mappings
 nnoremap <leader>vc :e $MYVIMRC<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR>
