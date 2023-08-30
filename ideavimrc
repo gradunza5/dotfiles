@@ -1,0 +1,207 @@
+" =============================================================================
+" Plugins
+" =============================================================================
+" plugin emulation
+set easymotion
+set surround
+set nerdtree
+set sneak
+set which-key
+set notimeout
+
+" =============================================================================
+" Settings
+" =============================================================================
+
+" tabs
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" line numbers 
+set nu
+set relativenumber
+
+" show mode at bottom of screen
+set showmode
+set showcmd
+
+" add system clipboard
+set clipboard+=unnamed
+
+" ignore case during search "
+set ignorecase
+set incsearch
+set hlsearch
+
+set scrolloff=15
+
+" =============================================================================
+" Key bindings
+" =============================================================================
+" change leader to <comma>"
+let mapleader = ","
+
+" better escape
+imap jk <Esc>
+
+" ide commands
+:map <Leader>B :action BuildSolutionAction<CR>
+:map <Leader>C :action CleanSolutionAction<CR>
+:map <Leader>D :action Debug<CR>
+:map <Leader>R :action Run<CR>
+
+" better screen movements
+:nmap <C-d> <C-d>zz
+:nmap <C-u> <C-u>zz
+
+" Pane navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+" Jump between methods
+nnoremap [[ <Action>(MethodUp)
+nnoremap ]] <Action>(MethodDown)
+
+" Navigate in pop-ups, like autocomplete
+inoremap <C-n> <Action>(PopupMenu-selectNext)
+inoremap <C-p> <Action>(PopupMenu-selectPrev)
+
+" =============================================================================
+" IDE Commands
+" =============================================================================
+" builds
+map <Leader>B :action BuildSolutionAction<CR>
+map <Leader>C :action CleanSolutionAction<CR>
+map <Leader>D :action Debug<CR>
+map <Leader>R :action Run<CR>
+
+" Comment by line
+map <leader>c <action>(CommentByLineComment)
+
+" Open NERDTree (use q to exit)
+map <leader>e :NERDTreeToggle<CR>
+
+" Window splits
+map <leader>w/ <Action>(SplitVertically)
+map <leader>w- <Action>(SplitHorizontally)
+map <leader>wx <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+
+" Display options
+map <leader>dd <action>(ToggleDistractionFreeMode)
+map <leader>dz <action>(ToggleZenMode)
+map <leader>df <action>(ToggleFullScreen)
+
+" Refactoring
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rs <Action>(ChangeSignature)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+
+" Go to code
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gu <Action>(ShowUsages)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gb <Action>(Back)
+nmap <leader>gf <Action>(Forward)
+
+" Error navigation
+map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
+map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
+
+" =============================================================================
+" EasyMotion
+" =============================================================================
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+map <Leader>f <Plug>(easymotion-f)
+map <Leader>F <Plug>(easymotion-F)
+
+" `s{char}{char}{label}`
+nmap s <Plug>(easymotion-f2)
+nmap S <Plug>(easymotion-F2)
+
+map <Leader>w <Plug>(easymotion-w)
+map <Leader>b <Plug>(easymotion-b)
+
+" =============================================================================
+" Which-Key
+" =============================================================================
+" Which-key settings
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+
+let g:WhichKeyDesc_leader = "<leader>e Open file explorer"
+
+let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
+let g:WhichKeyDesc_easymotion_dn = "<leader>j Jump down with Easymotion"
+let g:WhichKeyDesc_easymotion_up = "<leader>w Jump up with Easymotion"
+
+let g:WhichKeyDesc_comment = "<leader>c Comment line"
+
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+
+let g:WhichKeyDesc_window = "<leader>w Window splits"
+let g:WhichKeyDesc_window_split_vertically = "<leader>w/ Split vertically"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>w- Split horizontally"
+let g:WhichKeyDesc_window_split_unsplit = "<leader>wx Unsplit"
+let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+
+
+let g:WhichKeyDesc_display = "<leader>d Display options"
+let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+
+let g:WhichKeyDesc_action= "<leader>a Actions"
+let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
+
+let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
+
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
+let g:WhichKeyDesc_file_nav_goto_content = "<leader>fc Search for file content"
+let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+
+let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+
+let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
+let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
+let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
+let g:WhichKeyDesc_refactoring_variable = "<leader>rv Introduce variable"
+let g:WhichKeyDesc_refactoring_field = "<leader>rf Introduce field"
+let g:WhichKeyDesc_refactoring_signature = "<leader>rs Change signature"
+let g:WhichKeyDesc_refactoring_all = "<leader>rr Open refactorings list"
+
+let g:WhichKeyDesc_goto = "<leader>g Go to X"
+let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
+let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Definition"
+let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
+let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
+let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
+let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+
+let g:WhichKeyDesc_errors = "<leader>e Error navigation"
+let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
+let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
