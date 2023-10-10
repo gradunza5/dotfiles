@@ -80,3 +80,6 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 -- reload config
 --local fn = require("gradunza5.functions")
 --vim.keymap.set("n", "<leader>r", fn.reload.config, { silent = false })
+--
+--
+--<BS>

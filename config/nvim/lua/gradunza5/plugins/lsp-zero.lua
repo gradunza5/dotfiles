@@ -34,15 +34,48 @@ return {
             local cmp_action = require("lsp-zero.cmp").action()
             cmp.setup({
                 mapping = {
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                    -- safely use <CR> for cmp selection
+                    -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
+                    ["<CR>"] = cmp.mapping({
+                        i = function(fallback)
+                            if cmp.visible() and cmp.get_active_entry() then
+                                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                            else
+                                fallback()
+                            end
+                        end,
+                        s = cmp.mapping.confirm({ select = true }),
+                        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                    }),
                     ["<TAB>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 },
+                sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },   -- default lsp source
+                        { name = 'nvim_lua' },   -- nvim lua API
+                        { name = 'async_path' }, -- async system paths
+                    },
+                    {
+                        { name = 'buffer' }
+                    })
+            })
+
+            -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+            cmp.setup.cmdline({ '/', '?' }, {
+                mapping = cmp.mapping.preset.cmdline(),
                 sources = {
-                    { name = 'vimwiki-tags' }
+                    { name = 'buffer' }
                 }
+            })
+
+            cmp.setup.filetype({ 'markdown', 'md', 'vimwiki' }, {
+                sources = cmp.config.sources({
+                    { name = 'vimwiki-tags' }, -- set up in vimwiki config
+                }, {
+                    { name = 'buffer' },
+                })
             })
         end
     },
@@ -54,6 +87,8 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "FelipeLema/cmp-async-path" },
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },
@@ -67,24 +102,31 @@ return {
             local telescope = require("telescope.builtin")
             lsp.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
-                vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
+                vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
                 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-                vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
+                vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, opts)
+                vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation, opts)
+                vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition, opts)
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
                 -- Custom
                 vim.keymap.set("n", "<F2>", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                 vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = true })
-                vim.keymap.set({ "n", "i" }, "<C-H>", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set({ "n", "v" }, "<TAB>", vim.lsp.buf.code_action, opts)
+
+                lsp.buffer_autoformat()
             end)
+
+            lsp.format_on_save({
+                servers = {
+                    ['lua_ls'] = { 'lua' },
+                }
+            })
 
             -- Language Server Config: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
             local lspconfig = require("lspconfig")
@@ -95,6 +137,12 @@ return {
             lspconfig.neocmake.setup({ capabilities = capabilities })
             lspconfig.pyright.setup({ capabilities = capabilities })
             lspconfig.omnisharp.setup({ capabilities = capabilities })
+            lspconfig.clangd.setup({ capabilities = capabilities })
+            lspconfig.marksman.setup({
+                filetypes = { "markdown", "md", "vimwiki" },
+                single_file_support = false,
+                capabilities = capabilities,
+            })
 
             lsp.setup()
         end

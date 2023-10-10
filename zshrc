@@ -112,6 +112,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/android
 export PATH=$PATH:$ANDROID_HOME/platforms
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
 
 # react wants this, I guess
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
@@ -127,7 +128,7 @@ export JAVA_HOME=$JAVA_13_HOME
 export JDK_HOME=$JAVA_13_HOME
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
-export PATH="$PATH:/Users/benreeves/Code/flutter/bin"
+export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
 
 alias x="exit"
 

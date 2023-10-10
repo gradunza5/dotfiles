@@ -43,12 +43,6 @@ let mapleader = ","
 " better escape
 imap jk <Esc>
 
-" ide commands
-:map <Leader>B :action BuildSolutionAction<CR>
-:map <Leader>C :action CleanSolutionAction<CR>
-:map <Leader>D :action Debug<CR>
-:map <Leader>R :action Run<CR>
-
 " better screen movements
 :nmap <C-d> <C-d>zz
 :nmap <C-u> <C-u>zz
@@ -80,7 +74,7 @@ map <Leader>R :action Run<CR>
 map <leader>c <action>(CommentByLineComment)
 
 " Open NERDTree (use q to exit)
-map <leader>e :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 
 " Window splits
 map <leader>w/ <Action>(SplitVertically)
@@ -147,7 +141,7 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_leader = "<leader>e Open file explorer"
+let g:WhichKeyDesc_explorer = "<leader>t Open file explorer"
 
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 let g:WhichKeyDesc_easymotion_dn = "<leader>j Jump down with Easymotion"

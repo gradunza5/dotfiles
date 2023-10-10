@@ -2,7 +2,10 @@ vim.g.mapleader = ","
 vim.g.modelines = 2
 
 vim.opt.compatible = false
-vim.opt.foldmethod = "syntax"
+--vim.opt.foldmethod = "syntax"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--vim.opt.nofoldenable = true -- don't fold automatically?
 vim.opt.foldlevelstart = 50 -- really super don't automatically start with everything folded thanks
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -13,6 +16,7 @@ vim.opt.termguicolors = true
 vim.opt.autoread = true
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
+vim.opt.cursorline = true
 
 -- splits
 vim.opt.splitbelow = true
