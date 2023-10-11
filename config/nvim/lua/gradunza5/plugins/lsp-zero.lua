@@ -72,6 +72,7 @@ return {
 
             cmp.setup.filetype({ 'markdown', 'md', 'vimwiki' }, {
                 sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
                     { name = 'vimwiki-tags' }, -- set up in vimwiki config
                 }, {
                     { name = 'buffer' },
