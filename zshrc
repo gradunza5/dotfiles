@@ -129,6 +129,7 @@ export JDK_HOME=$JAVA_13_HOME
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
+export PATH="$PATH:/Users/benreeves/.pub-cache/bin"
 
 alias x="exit"
 
@@ -144,3 +145,9 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/mine/code/fzf-git.sh/fzf-git.sh ] && source ~/mine/code/fzf-git.sh/fzf-git.sh
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

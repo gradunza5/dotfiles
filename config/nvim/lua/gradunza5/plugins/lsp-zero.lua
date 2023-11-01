@@ -54,7 +54,6 @@ return {
                 },
                 sources = cmp.config.sources({
                         { name = 'nvim_lsp' },   -- default lsp source
-                        { name = 'nvim_lua' },   -- nvim lua API
                         { name = 'async_path' }, -- async system paths
                     },
                     {
@@ -70,10 +69,20 @@ return {
                 }
             })
 
+            cmp.setup.filetype({ 'lua' }, {
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp' },
+                    { name = 'nvim_lua' },
+                }, {
+                    { name = 'buffer' },
+                })
+            })
+
             cmp.setup.filetype({ 'markdown', 'md', 'vimwiki' }, {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
-                    { name = 'vimwiki-tags' }, -- set up in vimwiki config
+                    { name = 'vimwiki-tags' },
+                    { name = 'async_path' }, -- async system paths
                 }, {
                     { name = 'buffer' },
                 })
@@ -89,6 +98,7 @@ return {
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
+            { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
             { "FelipeLema/cmp-async-path" },
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
@@ -105,9 +115,6 @@ return {
                 local opts = { buffer = bufnr }
                 vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
                 vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, opts)
                 vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation, opts)
@@ -120,12 +127,27 @@ return {
                 vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = true })
 
+                -- Diagnostics
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+                vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+
+                local diagnostics_active = true
+                vim.keymap.set('n', '<leader>d', function()
+                    diagnostics_active = not diagnostics_active
+                    if diagnostics_active then
+                        vim.diagnostic.show()
+                    else
+                        vim.diagnostic.hide()
+                    end
+                end, opts)
+
                 lsp.buffer_autoformat()
             end)
 
             lsp.format_on_save({
                 servers = {
-                    ['lua_ls'] = { 'lua' },
+                    --['lua_ls'] = { 'lua' },
                 }
             })
 

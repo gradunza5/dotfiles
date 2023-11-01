@@ -20,7 +20,8 @@ vim.opt.cursorline = true
 
 -- splits
 vim.opt.splitbelow = true
-vim.opt.splitright = false
+--=vim.opt.splitright = false
+vim.opt.splitright = true
 
 -- disable netrw
 vim.g.loaded_netrw = 1
@@ -44,4 +45,3 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-

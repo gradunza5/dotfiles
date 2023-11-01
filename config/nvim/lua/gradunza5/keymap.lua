@@ -7,12 +7,12 @@ vim.keymap.set("n", "k", "gk")
 
 -- substitute word
 vim.keymap.set("n", "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 )
 
 -- insert newline
 vim.keymap.set("v", "<leader>lf",
-  [[:s/\%V/\r/]]
+    [[:s/\%V/\r/]]
 )
 
 -- Move highlighted text up/down w/ shift JK
@@ -42,6 +42,9 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "<right>", ":bn<cr>")
 vim.keymap.set("n", "<left>", ":bp<cr>")
 
+-- delete buffer, keep split
+vim.keymap.set("n", "<leader>q", "<CMD>bp|bd#<CR>")
+
 -- split movement
 vim.keymap.set("n", "<C-J>", "<C-w>w", { noremap = true })
 vim.keymap.set("n", "<C-K>", "<C-w>W", { noremap = true })
@@ -49,15 +52,15 @@ vim.keymap.set("n", "<C-L>", "<C-w>l", { noremap = true })
 vim.keymap.set("n", "<C-H>", "<C-w>h", { noremap = true })
 
 -- Resize Splits with Arrows
-vim.keymap.set("n", "<S-Left>",  ":vertical resize -2<CR>")
-vim.keymap.set("n", "<S-Down>",  ":resize -2<CR>")
-vim.keymap.set("n", "<S-Up>",    ":resize +2<CR>")
+vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<S-Down>", ":resize -2<CR>")
+vim.keymap.set("n", "<S-Up>", ":resize +2<CR>")
 vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>")
 
 -- Move Splits with Shift+Arrows
-vim.keymap.set("n", "<C-Left>",  "<C-w><S-h>")
-vim.keymap.set("n", "<C-Down>",  "<C-w><S-j>")
-vim.keymap.set("n", "<C-Up>",    "<C-w><S-k>")
+vim.keymap.set("n", "<C-Left>", "<C-w><S-h>")
+vim.keymap.set("n", "<C-Down>", "<C-w><S-j>")
+vim.keymap.set("n", "<C-Up>", "<C-w><S-k>")
 vim.keymap.set("n", "<C-Right>", "<C-w><S-l>")
 
 -- quick formats
@@ -83,3 +86,4 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 --
 --
 --<BS>
+--

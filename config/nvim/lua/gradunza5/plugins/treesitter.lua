@@ -27,7 +27,7 @@ return {
         highlight = { enable = true },
         indent = {
             enable = true,
-            disable = { "dart" }
+            disable = { "dart" } -- https://github.com/akinsho/flutter-tools.nvim/issues/298
         },
         ensure_installed = {
             "bash",
@@ -75,6 +75,9 @@ return {
                 return true
             end, opts.ensure_installed)
         end
+
+        --vim.treesitter.language.register('markdown', 'vimwiki')  -- force treesitter to parse vimwiki files with the markdown parser
+
         require("nvim-treesitter.configs").setup(opts)
 
         if load_textobjects then

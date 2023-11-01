@@ -5,10 +5,6 @@
 -- https://github.com/vimwiki/vimwiki
 return {
     {
-        -- for tag completion
-        "pontusk/cmp-vimwiki-tags"
-    },
-    {
         "vimwiki/vimwiki",
         version = "*",
         keys = {
@@ -31,7 +27,7 @@ return {
             vim.g.vimwiki_global_ext = 0
             vim.g.vimwiki_markdown_link_ext = 1
             vim.g.vimwiki_folding = "expr"
-            vim.g.vimwiki_autochdir = 1
+            vim.g.vimwiki_auto_chdir = 1
             vim.g.vimwiki_list = {
                 { --personal wiki
                     path = "~/Drive/Drive/me/wiki",
