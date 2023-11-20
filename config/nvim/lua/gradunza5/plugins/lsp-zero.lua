@@ -26,6 +26,7 @@ return {
         dependencies = {
             -- https://github.com/L3MON4D3/LuaSnip
             { "L3MON4D3/LuaSnip" },
+            { 'saadparwaiz1/cmp_luasnip' },
         },
         -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
         config = function()
@@ -33,6 +34,12 @@ return {
             local cmp = require("cmp")
             local cmp_action = require("lsp-zero.cmp").action()
             cmp.setup({
+                snippet = {
+                    -- REQUIRED - you must specify a snippet engine
+                    expand = function(args)
+                        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    end,
+                },
                 mapping = {
                     -- safely use <CR> for cmp selection
                     -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
@@ -55,6 +62,7 @@ return {
                 sources = cmp.config.sources({
                         { name = 'nvim_lsp' },   -- default lsp source
                         { name = 'async_path' }, -- async system paths
+                        { name = 'luasnip' },
                     },
                     {
                         { name = 'buffer' }
@@ -73,6 +81,8 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'nvim_lua' },
+                    { name = 'luasnip' },
+                    { name = 'async_path' }, -- async system paths
                 }, {
                     { name = 'buffer' },
                 })
@@ -83,6 +93,7 @@ return {
                     { name = 'nvim_lsp' },
                     { name = 'vimwiki-tags' },
                     { name = 'async_path' }, -- async system paths
+                    { name = 'luasnip' },
                 }, {
                     { name = 'buffer' },
                 })

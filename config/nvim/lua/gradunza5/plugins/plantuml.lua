@@ -22,12 +22,33 @@ return {
         end,
     },
     {
-        'aklt/plantuml-syntax'
+        'aklt/plantuml-syntax',
+        ft = {
+            "puml",
+            "pu",
+            "plantuml",
+            "iuml",
+            "wsd",
+        },
     },
     {
-        'tyru/open-browser.vim'
+        'tyru/open-browser.vim',
+        ft = {
+            "puml",
+            "pu",
+            "plantuml",
+            "iuml",
+            "wsd",
+        },
     },
     {
-        'weirongxu/plantuml-previewer.vim'
+        'weirongxu/plantuml-previewer.vim',
+        ft = {
+            "puml",
+            "pu",
+            "plantuml",
+            "iuml",
+            "wsd",
+        },
     },
 }

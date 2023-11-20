@@ -44,6 +44,7 @@ vim.keymap.set("n", "<left>", ":bp<cr>")
 
 -- delete buffer, keep split
 vim.keymap.set("n", "<leader>q", "<CMD>bp|bd#<CR>")
+--vim.keymap.set("n", "<leader>w", "<CMD>bp|bd#<CR>")
 
 -- split movement
 vim.keymap.set("n", "<C-J>", "<C-w>w", { noremap = true })

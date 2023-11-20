@@ -16,7 +16,7 @@ local function on_attach()
 
     -- custom mappings
     vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent, opts('Up'))
-    vim.keymap.set('n', '?',     api.tree.toggle_help,           opts('Help'))
+    vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 end
 
 return {
@@ -63,6 +63,7 @@ return {
                     git_placement = "signcolumn",
                 },
                 special_files = {
+                    "pubspec.yaml",
                     -- "CMakeLists.txt",
                     -- "CMakePresets.json",
                     -- "Cargo.toml",

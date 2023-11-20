@@ -8,4 +8,5 @@ return {
     { "jacoborus/tender.vim",             lazy = true },
     { "Shatur/neovim-ayu",                lazy = true },
     { "savq/melange-nvim",                lazy = true },
+    { "folke/tokyonight.nvim",            lazy = true },
 }
