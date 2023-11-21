@@ -27,6 +27,14 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- Cursor to Middle for next diff/prev diff
+vim.keymap.set("n", "]c", "]czz")
+vim.keymap.set("n", "[c", "[czz")
+
+-- Cursor to Middle for next issue/prev issue
+vim.keymap.set("n", "]d", "]dzz")
+vim.keymap.set("n", "[d", "[dzz")
+
 -- Cursor to Middle for Search Next/Previous
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
