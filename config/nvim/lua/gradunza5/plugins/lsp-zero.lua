@@ -172,6 +172,7 @@ return {
             lspconfig.pyright.setup({ capabilities = capabilities })
             lspconfig.omnisharp.setup({ capabilities = capabilities })
             lspconfig.clangd.setup({ capabilities = capabilities })
+            lspconfig.yamlls.setup({ capabilities = capabilities })
             lspconfig.marksman.setup({
                 filetypes = { "markdown", "md", "vimwiki" },
                 single_file_support = false,
