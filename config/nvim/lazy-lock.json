@@ -38,6 +38,7 @@
   "plantuml.nvim": { "branch": "master", "commit": "956987e29b3b560fa2e1f6fec86b7cdf9b293f99" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "quick-scope": { "branch": "master", "commit": "256d81e391a22eeb53791ff62ce65f870418fa71" },
+  "solarized-osaka.nvim": { "branch": "main", "commit": "83b7026ac7a4e185d4ecbe99926fd94b5735e2ea" },
   "space-vim-dark": { "branch": "master", "commit": "0ab698bd2a3959e3bed7691ac55ba4d8abefd143" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },

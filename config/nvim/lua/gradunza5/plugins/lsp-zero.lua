@@ -178,6 +178,7 @@ return {
                 single_file_support = false,
                 capabilities = capabilities,
             })
+            lspconfig.tsserver.setup({ capabilities = capabilities })
 
             lsp.setup()
         end

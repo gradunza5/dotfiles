@@ -9,4 +9,5 @@ return {
     { "Shatur/neovim-ayu",                lazy = true },
     { "savq/melange-nvim",                lazy = true },
     { "folke/tokyonight.nvim",            lazy = true },
+    { "craftzdog/solarized-osaka.nvim",   lazy = true },
 }

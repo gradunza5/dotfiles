@@ -51,9 +51,9 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ `uname` == "Darwin" ]]; then
-	plugins=(git svn macos taskwarrior)
+	plugins=(git macos z dotnet flutter fzf)
 else
-	plugins=(git svn taskwarrior)
+	plugins=(git z dotnet flutter fzf)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -124,8 +124,9 @@ export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
 
 #java home
 export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
-export JAVA_HOME=$JAVA_13_HOME
-export JDK_HOME=$JAVA_13_HOME
+export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
+export JAVA_HOME=$JAVA_17_HOME
+export JDK_HOME=$JAVA_17_HOME
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
@@ -150,4 +151,12 @@ fi
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+# eza completion
+if ! type "$exa" > /dev/null; then
+    export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
+
+    alias l="eza -lh"
+    alias v="eza -lah"
+fi
 
