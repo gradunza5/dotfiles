@@ -51,9 +51,9 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ `uname` == "Darwin" ]]; then
-	plugins=(git macos z dotnet flutter fzf)
+	plugins=(git macos dotnet flutter fzf)
 else
-	plugins=(git z dotnet flutter fzf)
+	plugins=(git dotnet flutter fzf)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -82,9 +82,6 @@ if [[ `uname` == "Darwin" ]]; then
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
 	
-	# for newer subversion
-	export PATH=/opt/subversion/bin:$PATH
-
     # for gnu ls and things
     PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -134,12 +131,13 @@ export PATH="$PATH:/Users/benreeves/.pub-cache/bin"
 
 alias x="exit"
 
-alias l="ls -lh --color=auto"
-alias v="ls -lah --color=auto"
+alias l="ls -lh"
+alias v="ls -lah"
 
 alias gs="git status"
 
 alias mux="tmuxinator"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -160,3 +158,8 @@ if ! type "$exa" > /dev/null; then
     alias v="eza -lah"
 fi
 
+# https://github.com/ajeetdsouza/zoxide
+if ! type "$z" > /dev/null; then
+    # zoxide (z) completion
+    eval "$(zoxide init zsh)"
+fi 
