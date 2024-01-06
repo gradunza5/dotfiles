@@ -10,4 +10,5 @@ return {
     { "savq/melange-nvim",                lazy = true },
     { "folke/tokyonight.nvim",            lazy = true },
     { "craftzdog/solarized-osaka.nvim",   lazy = true },
+    { 'rose-pine/neovim',                 spec = { name = 'rose-pine', lazy = true } }
 }

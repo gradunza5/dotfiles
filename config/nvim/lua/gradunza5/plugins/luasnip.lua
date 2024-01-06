@@ -88,10 +88,12 @@ return {
             --     t(")"), i(0)
             -- }),
             s("link",
-                fmt("[{}]({})", { i(1, "title"), i(2, "url") })
+                fmt("[{}]({})", { i(1, "title"), i(2, "url") }), -- formatter for the link itself
+                i(0)                                             -- ending insert node so we can c-j out
             ),
             s("task",
-                fmt("* [ ] {}", { i(0, "task") })
+                fmt("* [ ] {}", { i(0, "task") }),
+                i(0) -- ending insert node so we can c-j out
             ),
         })
     end,

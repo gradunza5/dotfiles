@@ -28,14 +28,18 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Cursor to Middle for next diff/prev diff
-vim.keymap.set("n", "]c", "]czz")
-vim.keymap.set("n", "[c", "[czz")
+vim.keymap.set("n", "[c", "[czz", { desc = "Next git diff" })
+vim.keymap.set("n", "]c", "]czz", { desc = "Previous git diff" })
 
 -- Cursor to Middle for next issue/prev issue
-vim.keymap.set("n", "]d", "]dzz")
-vim.keymap.set("n", "[d", "[dzz")
+vim.keymap.set("n", "[d", "[dzz", { desc = "Next Diagnostic" })
+vim.keymap.set("n", "]d", "]dzz", { desc = "Previous Diagnostic" })
 
--- Cursor to Middle for Search Next/Previous
+-- Change spelling navigation to make sense (for me), and cursor to middle of screen
+vim.keymap.set("n", "[s", "]szz", { desc = "Next misspelled word" })
+vim.keymap.set("n", "]s", "[szz", { desc = "Previous misspelled word" })
+
+-- Cursor to Middle for Search Next/Previous,
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -52,7 +56,6 @@ vim.keymap.set("n", "<left>", ":bp<cr>")
 
 -- delete buffer, keep split
 vim.keymap.set("n", "<leader>q", "<CMD>bp|bd#<CR>")
---vim.keymap.set("n", "<leader>w", "<CMD>bp|bd#<CR>")
 
 -- split movement
 vim.keymap.set("n", "<C-J>", "<C-w>w", { noremap = true })

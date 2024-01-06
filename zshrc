@@ -151,7 +151,7 @@ fi
 ## [/Completion]
 
 # eza completion
-if ! type "$exa" > /dev/null; then
+if ! type "$eza" > /dev/null; then
     export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
 
     alias l="eza -lh"

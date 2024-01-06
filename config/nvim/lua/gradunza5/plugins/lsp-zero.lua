@@ -124,24 +124,32 @@ return {
             local telescope = require("telescope.builtin")
             lsp.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
-                vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
+                vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action,
+                    vim.tbl_extend("force", opts, { desc = "Code action" }))
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation, opts)
-                vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition, opts)
+                vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration,
+                    vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+                vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition,
+                    vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+                vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation,
+                    vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
+                vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition,
+                    vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
                 -- Custom
                 vim.keymap.set("n", "<F2>", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
                 vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = true })
+                vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = true, desc = "Go to references" })
 
                 -- Diagnostics
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-                vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev,
+                    vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_next,
+                    vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
+                vim.keymap.set("n", "gl", vim.diagnostic.open_float,
+                    vim.tbl_extend("force", opts, { desc = "Open diagnostics window" }))
 
                 local diagnostics_active = true
                 vim.keymap.set('n', '<leader>d', function()
