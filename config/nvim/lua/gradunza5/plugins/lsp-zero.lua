@@ -121,7 +121,13 @@ return {
                     window = {
                         winblend = 00 -- 50% opacity
                     }
-                }
+                },
+                -- Options related to integrating with other plugins
+                integration = {
+                    ["nvim-tree"] = {
+                        enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+                    },
+                },
             })
 
             -- Formatting
