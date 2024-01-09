@@ -24,7 +24,6 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            -- https://github.com/L3MON4D3/LuaSnip
             { "L3MON4D3/LuaSnip" },
             { 'saadparwaiz1/cmp_luasnip' },
         },
@@ -114,8 +113,17 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },
+            { "j-hui/fidget.nvim" },
         },
         config = function()
+            require("fidget").setup({
+                notification = {
+                    window = {
+                        winblend = 00 -- 50% opacity
+                    }
+                }
+            })
+
             -- Formatting
             vim.api.nvim_create_user_command("Fmt", format, {})
 
@@ -161,6 +169,19 @@ return {
                     end
                 end, opts)
 
+                vim.diagnostic.config({
+                    update_in_insert = true,
+                    float = {
+                        focusable = false,
+                        style = "minimal",
+                        border = "rounded",
+                        source = "always",
+                        header = "",
+                        prefix = "",
+                    },
+                    virtual_text = true,
+                })
+
                 lsp.buffer_autoformat()
             end)
 
@@ -190,5 +211,5 @@ return {
 
             lsp.setup()
         end
-    }
+    },
 }
