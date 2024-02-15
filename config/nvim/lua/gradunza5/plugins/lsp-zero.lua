@@ -26,6 +26,11 @@ return {
         dependencies = {
             { "L3MON4D3/LuaSnip" },
             { 'saadparwaiz1/cmp_luasnip' },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-cmdline" },
+            { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
+            { "FelipeLema/cmp-async-path" },
         },
         -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
         config = function()
@@ -76,6 +81,21 @@ return {
                 }
             })
 
+            -- `:` cmdline setup.
+            cmp.setup.cmdline(':', {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = 'path' }
+                }, {
+                    {
+                        name = 'cmdline',
+                        option = {
+                            ignore_cmds = { 'Man', '!' }
+                        }
+                    }
+                })
+            })
+
             cmp.setup.filetype({ 'lua' }, {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
@@ -106,10 +126,6 @@ return {
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
-            { "FelipeLema/cmp-async-path" },
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },
