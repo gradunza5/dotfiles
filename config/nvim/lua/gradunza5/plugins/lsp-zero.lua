@@ -119,13 +119,13 @@ return {
             require("fidget").setup({
                 notification = {
                     window = {
-                        winblend = 00 -- 50% opacity
+                        winblend = 00 -- transparent background
                     }
                 },
-                -- Options related to integrating with other plugins
                 integration = {
                     ["nvim-tree"] = {
-                        enable = false, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+                        -- disabled this because Fidget would error every time nvim-tree opened
+                        enable = false,
                     },
                 },
             })
@@ -138,9 +138,11 @@ return {
             local telescope = require("telescope.builtin")
             lsp.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
+
                 vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action,
                     vim.tbl_extend("force", opts, { desc = "Code action" }))
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration,
                     vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
                 vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition,
@@ -149,13 +151,13 @@ return {
                     vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
                 vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition,
                     vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
+                vim.keymap.set("n", "<leader>gr", telescope.lsp_references,
+                    { buffer = true, desc = "Go to references" })
+
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
-                -- Custom
                 vim.keymap.set("n", "<F2>", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gr", telescope.lsp_references, { buffer = true, desc = "Go to references" })
 
                 -- Diagnostics
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_prev,

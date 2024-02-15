@@ -9,5 +9,9 @@ return {
     },
     config = function()
         require("telescope").load_extension("flutter")
-    end,
+
+        vim.keymap.set("n", "<leader>fl", function()
+            require('telescope').extensions.flutter.commands()
+        end, { desc = "Telescope Flutter Commands" })
+    end
 }

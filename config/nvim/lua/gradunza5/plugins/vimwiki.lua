@@ -24,7 +24,7 @@ return {
             vim.keymap.set("n", "<Tab>", "<CMD>VimwikiNextLink<CR>")
 
             vim.g.vimwiki_hl_headers = 1
-            vim.g.vimwiki_global_ext = 0
+            vim.g.vimwiki_global_ext = 1
             vim.g.vimwiki_markdown_link_ext = 1
             vim.g.vimwiki_folding = "expr"
             vim.g.vimwiki_auto_chdir = 1

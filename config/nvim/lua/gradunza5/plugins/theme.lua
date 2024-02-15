@@ -9,6 +9,16 @@ return {
     { "Shatur/neovim-ayu",                lazy = true },
     { "savq/melange-nvim",                lazy = true },
     { "folke/tokyonight.nvim",            lazy = true },
-    { "craftzdog/solarized-osaka.nvim",   lazy = true },
-    { 'rose-pine/neovim',                 spec = { name = 'rose-pine', lazy = true } }
+    --{ "craftzdog/solarized-osaka.nvim",   lazy = true },
+    { 'rose-pine/neovim',                 spec = { name = 'rose-pine', lazy = true } },
+    {
+        "craftzdog/solarized-osaka.nvim",
+        lazy = true,
+        priority = 1000,
+        opts = function()
+            return {
+                transparent = true,
+            }
+        end,
+    },
 }
