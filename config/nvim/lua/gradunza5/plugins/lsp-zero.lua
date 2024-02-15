@@ -22,10 +22,16 @@ return {
     -- https://github.com/hrsh7th/nvim-cmp
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
             { "L3MON4D3/LuaSnip" },
             { 'saadparwaiz1/cmp_luasnip' },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-buffer" },
+            { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
+            { "FelipeLema/cmp-async-path" },
         },
         -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
         config = function()
@@ -51,7 +57,9 @@ return {
                             end
                         end,
                         s = cmp.mapping.confirm({ select = true }),
-                        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                        -- disabled because otherwise it would automatically complete on command
+                        -- line for e.g. `:q` or `:w` to e.g. `:qa` or 1:wa`
+                        -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                     }),
                     ["<TAB>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-Space>"] = cmp.mapping.complete(),
@@ -74,6 +82,20 @@ return {
                 sources = {
                     { name = 'buffer' }
                 }
+            })
+
+            cmp.setup.cmdline(':', {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = 'path' }
+                }, {
+                    {
+                        name = 'cmdline',
+                        option = {
+                            ignore_cmds = { 'Man', '!', 'q' }
+                        }
+                    }
+                })
             })
 
             cmp.setup.filetype({ 'lua' }, {
@@ -106,10 +128,6 @@ return {
         cmd = "LspInfo",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
-            { "FelipeLema/cmp-async-path" },
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },

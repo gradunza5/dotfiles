@@ -162,4 +162,8 @@ fi
 if ! type "$z" > /dev/null; then
     # zoxide (z) completion
     eval "$(zoxide init zsh)"
+
+    alias cd='z'
 fi 
+
+eval "$(starship init zsh)"

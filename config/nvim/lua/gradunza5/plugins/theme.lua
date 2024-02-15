@@ -18,6 +18,7 @@ return {
         opts = function()
             return {
                 transparent = true,
+                terminal_colors = false,
             }
         end,
     },
