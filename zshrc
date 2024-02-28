@@ -22,7 +22,7 @@ bindkey '^K' backward-kill-word
 # CASE_SENSITIVE="true"
 
 # ZSH Won't prompt for update, it'll just do it and probably fail.
-DISABLE_UPDATE_PROMPT=true
+DISABLE_UPDATE_PROMPT=false
 
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -137,6 +137,9 @@ alias v="ls -lah"
 alias gs="git status"
 
 alias mux="tmuxinator"
+
+alias nvim-exp='NVIM_APPNAME="nvim-exp" nvim'
+alias nvim-ks='NVIM_APPNAME="nvim-kickstart" nvim'
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"

@@ -24,8 +24,14 @@ return {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
-            { "L3MON4D3/LuaSnip" },
-            { 'saadparwaiz1/cmp_luasnip' },
+            {
+                "L3MON4D3/LuaSnip",
+                event = "VeryLazy",
+                dependencies = {
+                    { "saadparwaiz1/cmp_luasnip" },
+                    { "rafamadriz/friendly-snippets" }, -- adds friendly snippets
+                }
+            },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-cmdline" },
@@ -38,6 +44,7 @@ return {
             require("lsp-zero.cmp").extend()
             local cmp = require("cmp")
             local cmp_action = require("lsp-zero.cmp").action()
+
             cmp.setup({
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
@@ -45,6 +52,7 @@ return {
                         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                     end,
                 },
+
                 mapping = {
                     -- safely use <CR> for cmp selection
                     -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
@@ -132,6 +140,7 @@ return {
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },
             { "j-hui/fidget.nvim" },
+            { "folke/neodev.nvim" }
         },
         config = function()
             require("fidget").setup({

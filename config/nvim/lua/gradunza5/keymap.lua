@@ -92,6 +92,8 @@ vim.keymap.set("i", "<leader>v", "<esc>\"+gpa")
 vim.keymap.set("v", "<leader>c", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 
+vim.keymap.set("i", "<C-Backspace>", "<esc>dawi<space>")
+
 -- reload config
 --local fn = require("gradunza5.functions")
 --vim.keymap.set("n", "<leader>r", fn.reload.config, { silent = false })
