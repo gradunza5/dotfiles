@@ -21,8 +21,8 @@ return {
             auto_sesison_use_git_branch = true,
             auto_restore_enabled = false,
             post_restore_cmds = { change_nvim_tree_dir, }, --"NvimTreeOpen" },
-            post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
-                require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
+            post_cwd_changed_hook = function()             -- example refreshing the lualine status line _after_ the cwd changes
+                require("lualine").refresh()               -- refresh lualine so the new session name is displayed in the status bar
             end,
             pre_save_cmds = { "NvimTreeClose", neotest_close },
             session_lens = {
@@ -31,8 +31,8 @@ return {
                 previewer = false,
             },
         })
-        vim.keymap.set("n", "<leader>fs", require("auto-session.session-lens").search_session, {
-            noremap = true,
+        vim.keymap.set("n", "<leader>ss", require("auto-session.session-lens").search_session, {
+            noremap = true, desc = "[S]elect [S]essions"
         })
     end
 }

@@ -169,7 +169,7 @@ return {
                 vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
 
                 vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action,
-                    vim.tbl_extend("force", opts, { desc = "Code action" }))
+                    vim.tbl_extend("force", opts, { desc = "[C]ode [A]ction" }))
                 vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration,
                     vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
                 vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition,
@@ -184,25 +184,8 @@ return {
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("n", "<F2>", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
-                -- Diagnostics
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev,
-                    vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_next,
-                    vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
-                vim.keymap.set("n", "gl", vim.diagnostic.open_float,
-                    vim.tbl_extend("force", opts, { desc = "Open diagnostics window" }))
-
-                local diagnostics_active = true
-                vim.keymap.set('n', '<leader>d', function()
-                    diagnostics_active = not diagnostics_active
-                    if diagnostics_active then
-                        vim.diagnostic.show()
-                    else
-                        vim.diagnostic.hide()
-                    end
-                end, opts)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+                    vim.tbl_extend("force", opts, { desc = "[R]e[n]ame" }))
 
                 vim.diagnostic.config({
                     update_in_insert = true,
@@ -216,6 +199,24 @@ return {
                     },
                     virtual_text = true,
                 })
+
+                -- The following two autocommands are used to highlight references of the
+                -- -- word under your cursor when your cursor rests there for a little while.
+                -- --    See `:help CursorHold` for information about when this is executed
+                -- --
+                -- -- When you move your cursor, the highlights will be cleared (the second autocommand).
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = bufnr,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
+
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                        buffer = bufnr,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
+
 
                 lsp.buffer_autoformat()
             end)

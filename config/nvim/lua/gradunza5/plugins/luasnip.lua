@@ -6,6 +6,8 @@ return {
     -- install jsregexp (optional!).
     build = "make install_jsregexp",
 
+    event = "VeryLazy",
+
     config = function()
         local ls = require("luasnip")
         local types = require("luasnip.util.types")

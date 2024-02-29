@@ -7,12 +7,12 @@ vim.keymap.set("n", "k", "gk")
 
 -- substitute word
 vim.keymap.set("n", "<leader>s",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 )
 
 -- insert newline
 vim.keymap.set("v", "<leader>lf",
-    [[:s/\%V/\r/]]
+  [[:s/\%V/\r/]]
 )
 
 -- Move highlighted text up/down w/ shift JK
@@ -28,20 +28,37 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Cursor to Middle for next diff/prev diff
-vim.keymap.set("n", "[c", "[czz", { desc = "Next git diff" })
-vim.keymap.set("n", "]c", "]czz", { desc = "Previous git diff" })
+vim.keymap.set("n", "[c", "[czz", { desc = "Next git [C]hange" })
+vim.keymap.set("n", "]c", "]czz", { desc = "Previous git [C]hange" })
 
 -- Cursor to Middle for next issue/prev issue
-vim.keymap.set("n", "[d", "[dzz", { desc = "Next Diagnostic" })
-vim.keymap.set("n", "]d", "]dzz", { desc = "Previous Diagnostic" })
+-- vim.keymap.set("n", "[d", "[dzz", { desc = "Next Diagnostic" })
+-- vim.keymap.set("n", "]d", "]dzz", { desc = "Previous Diagnostic" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show [D]iagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open [D]iagnostic [Q]uickfix list" })
+
+local diagnostics_active = true
+vim.keymap.set('n', '<leader>dt', function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.show()
+  else
+    vim.diagnostic.hide()
+  end
+end, { desc = "[D]iagnostic [T]oggle" })
 
 -- Change spelling navigation to make sense (for me), and cursor to middle of screen
-vim.keymap.set("n", "[s", "]szz", { desc = "Next misspelled word" })
-vim.keymap.set("n", "]s", "[szz", { desc = "Previous misspelled word" })
+vim.keymap.set("n", "[s", "[szz", { desc = "Next misspelled word" })
+vim.keymap.set("n", "]s", "]szz", { desc = "Previous misspelled word" })
 
 -- Cursor to Middle for Search Next/Previous,
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- Clear search highlight on <Esc>
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- paste over and keep register
 vim.keymap.set("x", "<leader>p", "\"_dP")
@@ -77,7 +94,7 @@ vim.keymap.set("n", "<C-Right>", "<C-w><S-l>")
 
 -- quick formats
 vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
+  vim.lsp.buf.format()
 end)
 
 -- quick fix navigation
