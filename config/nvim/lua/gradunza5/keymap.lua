@@ -7,12 +7,12 @@ vim.keymap.set("n", "k", "gk")
 
 -- substitute word
 vim.keymap.set("n", "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 )
 
 -- insert newline
 vim.keymap.set("v", "<leader>lf",
-  [[:s/\%V/\r/]]
+    [[:s/\%V/\r/]]
 )
 
 -- Move highlighted text up/down w/ shift JK
@@ -41,12 +41,12 @@ vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open [D]i
 
 local diagnostics_active = true
 vim.keymap.set('n', '<leader>dt', function()
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
-    vim.diagnostic.show()
-  else
-    vim.diagnostic.hide()
-  end
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.show()
+    else
+        vim.diagnostic.hide()
+    end
 end, { desc = "[D]iagnostic [T]oggle" })
 
 -- Change spelling navigation to make sense (for me), and cursor to middle of screen
@@ -75,10 +75,10 @@ vim.keymap.set("n", "<left>", ":bp<cr>")
 vim.keymap.set("n", "<leader>q", "<CMD>bp|bd#<CR>")
 
 -- split movement
-vim.keymap.set("n", "<C-J>", "<C-w>w", { noremap = true })
-vim.keymap.set("n", "<C-K>", "<C-w>W", { noremap = true })
-vim.keymap.set("n", "<C-L>", "<C-w>l", { noremap = true })
-vim.keymap.set("n", "<C-H>", "<C-w>h", { noremap = true })
+-- vim.keymap.set("n", "<C-J>", "<C-w>w", { noremap = true })
+-- vim.keymap.set("n", "<C-K>", "<C-w>W", { noremap = true })
+-- vim.keymap.set("n", "<C-L>", "<C-w>l", { noremap = true })
+-- vim.keymap.set("n", "<C-H>", "<C-w>h", { noremap = true })
 
 -- Resize Splits with Arrows
 vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
@@ -94,12 +94,12 @@ vim.keymap.set("n", "<C-Right>", "<C-w><S-l>")
 
 -- quick formats
 vim.keymap.set("n", "<leader>f", function()
-  vim.lsp.buf.format()
+    vim.lsp.buf.format()
 end)
 
 -- quick fix navigation
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
