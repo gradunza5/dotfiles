@@ -1,8 +1,12 @@
 -- https://github.com/numToStr/Comment.nvim
 return {
-    'numToStr/Comment.nvim',
-    opts = {
-        -- add any options here
+    {
+        'numToStr/Comment.nvim',
+        opts = {},
     },
-    lazy = false,
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = { signs = false },
+    },
 }

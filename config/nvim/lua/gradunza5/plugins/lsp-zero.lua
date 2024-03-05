@@ -22,13 +22,20 @@ return {
     -- https://github.com/hrsh7th/nvim-cmp
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
-            { "L3MON4D3/LuaSnip" },
-            { 'saadparwaiz1/cmp_luasnip' },
+            {
+                "L3MON4D3/LuaSnip",
+                event = "VeryLazy",
+                dependencies = {
+                    { "saadparwaiz1/cmp_luasnip" },
+                    { "rafamadriz/friendly-snippets" }, -- adds friendly snippets
+                }
+            },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-buffer" },
             { "pontusk/cmp-vimwiki-tags" }, -- for tag completion
             { "FelipeLema/cmp-async-path" },
         },
@@ -37,6 +44,7 @@ return {
             require("lsp-zero.cmp").extend()
             local cmp = require("cmp")
             local cmp_action = require("lsp-zero.cmp").action()
+
             cmp.setup({
                 snippet = {
                     -- REQUIRED - you must specify a snippet engine
@@ -44,6 +52,7 @@ return {
                         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                     end,
                 },
+
                 mapping = {
                     -- safely use <CR> for cmp selection
                     -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
@@ -56,7 +65,9 @@ return {
                             end
                         end,
                         s = cmp.mapping.confirm({ select = true }),
-                        c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                        -- disabled because otherwise it would automatically complete on command
+                        -- line for e.g. `:q` or `:w` to e.g. `:qa` or 1:wa`
+                        -- c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                     }),
                     ["<TAB>"] = cmp.mapping.confirm({ select = true }),
                     ["<C-Space>"] = cmp.mapping.complete(),
@@ -81,7 +92,6 @@ return {
                 }
             })
 
-            -- `:` cmdline setup.
             cmp.setup.cmdline(':', {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
@@ -90,7 +100,7 @@ return {
                     {
                         name = 'cmdline',
                         option = {
-                            ignore_cmds = { 'Man', '!' }
+                            ignore_cmds = { 'Man', '!', 'q' }
                         }
                     }
                 })
@@ -130,6 +140,7 @@ return {
             { "williamboman/mason.nvim" },
             { "nvim-telescope/telescope.nvim" },
             { "j-hui/fidget.nvim" },
+            { "folke/neodev.nvim" }
         },
         config = function()
             require("fidget").setup({
@@ -158,7 +169,7 @@ return {
                 vim.keymap.set("n", "?", vim.lsp.buf.hover, opts)
 
                 vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action,
-                    vim.tbl_extend("force", opts, { desc = "Code action" }))
+                    vim.tbl_extend("force", opts, { desc = "[C]ode [A]ction" }))
                 vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration,
                     vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
                 vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition,
@@ -173,25 +184,8 @@ return {
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("n", "<F2>", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
-                -- Diagnostics
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_prev,
-                    vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_next,
-                    vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
-                vim.keymap.set("n", "gl", vim.diagnostic.open_float,
-                    vim.tbl_extend("force", opts, { desc = "Open diagnostics window" }))
-
-                local diagnostics_active = true
-                vim.keymap.set('n', '<leader>d', function()
-                    diagnostics_active = not diagnostics_active
-                    if diagnostics_active then
-                        vim.diagnostic.show()
-                    else
-                        vim.diagnostic.hide()
-                    end
-                end, opts)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+                    vim.tbl_extend("force", opts, { desc = "[R]e[n]ame" }))
 
                 vim.diagnostic.config({
                     update_in_insert = true,
@@ -205,6 +199,24 @@ return {
                     },
                     virtual_text = true,
                 })
+
+                -- The following two autocommands are used to highlight references of the
+                -- -- word under your cursor when your cursor rests there for a little while.
+                -- --    See `:help CursorHold` for information about when this is executed
+                -- --
+                -- -- When you move your cursor, the highlights will be cleared (the second autocommand).
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = bufnr,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
+
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                        buffer = bufnr,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
+
 
                 lsp.buffer_autoformat()
             end)
