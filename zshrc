@@ -91,7 +91,7 @@ if [[ `uname` == "Darwin" ]]; then
 	alias updatedb="sudo /usr/libexec/locate.updatedb"
 	alias tmux="tmux -2"
 	alias ctags="/usr/local/bin/ctags"
-	export EDITOR="vim"
+	export EDITOR="nvim"
 
      #Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
      export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
@@ -130,6 +130,7 @@ export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
 export PATH="$PATH:/Users/benreeves/.pub-cache/bin"
 
 alias x="exit"
+alias sd="sudo shutdown -h now"
 
 alias l="ls -lh"
 alias v="ls -lah"
@@ -166,6 +167,7 @@ if ! type "$z" > /dev/null; then
     # zoxide (z) completion
     eval "$(zoxide init zsh)"
 
+    alias fcd='echo "forcing dir change" && cd'
     alias cd='z'
 fi 
 
