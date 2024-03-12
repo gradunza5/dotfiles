@@ -43,7 +43,6 @@ return {
         config = function()
             require("lsp-zero.cmp").extend()
             local cmp = require("cmp")
-            local cmp_action = require("lsp-zero.cmp").action()
 
             cmp.setup({
                 snippet = {
@@ -171,15 +170,15 @@ return {
                 vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action,
                     vim.tbl_extend("force", opts, { desc = "[C]ode [A]ction" }))
                 vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration,
-                    vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+                    vim.tbl_extend("force", opts, { desc = "[G]o to [D]eclaration" }))
                 vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.definition,
-                    vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+                    vim.tbl_extend("force", opts, { desc = "[G]o to [d]efinition" }))
                 vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation,
-                    vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
+                    vim.tbl_extend("force", opts, { desc = "[G]o to [i]mplementation" }))
                 vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition,
-                    vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
+                    vim.tbl_extend("force", opts, { desc = "[G]o to type definition" }))
                 vim.keymap.set("n", "<leader>gr", telescope.lsp_references,
-                    { buffer = true, desc = "Go to references" })
+                    { buffer = true, desc = "Go to [R]eferences" })
 
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
@@ -231,7 +230,31 @@ return {
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+            lspconfig.lua_ls.setup(lsp.nvim_lua_ls({
+                -- settings block pulled from kickstart.nvim
+                settings = {
+                    Lua = {
+                        runtime = { version = 'LuaJIT' },
+                        workspace = {
+                            checkThirdParty = false,
+                            -- Tells lua_ls where to find all the Lua files that you have loaded
+                            -- for your neovim configuration.
+                            library = {
+                                '${3rd}/luv/library',
+                                unpack(vim.api.nvim_get_runtime_file('', true)),
+                            },
+                            -- If lua_ls is really slow on your computer, you can try this instead:
+                            -- library = { vim.env.VIMRUNTIME },
+                        },
+                        completion = {
+                            callSnippet = 'Replace',
+                        },
+                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                        -- diagnostics = { disable = { 'missing-fields' } },
+                    },
+                },
+            }))
+
             lspconfig.bashls.setup({ capabilities = capabilities })
             lspconfig.neocmake.setup({ capabilities = capabilities })
             lspconfig.pyright.setup({ capabilities = capabilities })

@@ -75,10 +75,17 @@ return {
                 relativenumber = true,
                 width = 50,
             },
+            update_focused_file = {
+                enable = true,
+                update_root = true,
+            },
             actions = {
                 open_file = {
                     quit_on_open = true
                 },
+                change_dir = {
+                    global = true,
+                }
             },
         })
     end,
