@@ -59,10 +59,7 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # for syntax
-source ~/dotfiles/syntax.zsh
-
-# mh theme configured to show hostname
-source ~/dotfiles/zsh-prompt.zsh
+#source ~/.config/zsh/syntax.zsh
 
 # for qt
 export PATH=$PATH:/usr/local/qt4/bin
@@ -98,6 +95,13 @@ if [[ `uname` == "Darwin" ]]; then
      if [ -d "$GHC_DOT_APP" ]; then
          export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
      fi
+     
+    #java home
+    export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
+    export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
+    export JAVA_HOME=$JAVA_17_HOME
+    export JDK_HOME=$JAVA_17_HOME
+
 fi
 
 # for dircolors
@@ -118,12 +122,6 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 #add maven to path
 export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
-
-#java home
-export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
-export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
-export JAVA_HOME=$JAVA_17_HOME
-export JDK_HOME=$JAVA_17_HOME
 
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
@@ -148,6 +146,7 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/mine/code/fzf-git.sh/fzf-git.sh ] && source ~/mine/code/fzf-git.sh/fzf-git.sh
+[ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
@@ -172,3 +171,6 @@ if ! type "$z" > /dev/null; then
 fi 
 
 eval "$(starship init zsh)"
+
+[[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
+  && source "$HOME/.fzf-extras/fzf-extras.zsh"
