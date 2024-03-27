@@ -2,7 +2,8 @@
 --vim.cmd("colorscheme solarized8")
 --vim.cmd("colorscheme kanagawa-dragon")
 --vim.cmd("colorscheme ayu-dark")
-vim.cmd [[colorscheme solarized-osaka]]
+--vim.cmd [[colorscheme solarized-osaka]]
+vim.cmd [[colorscheme catppuccin-mocha]]
 
 -- SpellCheck
 vim.cmd([[highlight clear SpellBad]])

@@ -178,7 +178,7 @@ return {
                 vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition,
                     vim.tbl_extend("force", opts, { desc = "[G]o to type definition" }))
                 vim.keymap.set("n", "<leader>gr", telescope.lsp_references,
-                    { buffer = true, desc = "Go to [R]eferences" })
+                    { buffer = true, desc = "[G]o to [R]eferences" })
 
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)
