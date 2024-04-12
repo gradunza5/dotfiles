@@ -81,6 +81,7 @@ return {
         vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[F]ind [C]ommands' })
         vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
         vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+        vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = '[F]ind [J]umps' })
 
         vim.keymap.set('n', '<leader>/', function()
             -- You can pass additional configuration to telescope to change theme, layout, etc.

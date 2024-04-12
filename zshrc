@@ -174,3 +174,5 @@ eval "$(starship init zsh)"
 
 [[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
   && source "$HOME/.fzf-extras/fzf-extras.zsh"
+
+eval "$(fzf --zsh)"
