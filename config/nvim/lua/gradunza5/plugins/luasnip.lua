@@ -94,7 +94,7 @@ return {
                 i(0)                                             -- ending insert node so we can c-j out
             ),
             s("task",
-                fmt("* [ ] {}", { i(0, "task") }),
+                fmt("- [ ] {}", { i(0, "task") }),
                 i(0) -- ending insert node so we can c-j out
             ),
         })
