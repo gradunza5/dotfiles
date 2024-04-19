@@ -6,11 +6,17 @@ return {
     -- install jsregexp (optional!).
     build = "make install_jsregexp",
 
+    dependencies = { "rafamadriz/friendly-snippets" },
+
     event = "VeryLazy",
 
     config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+
         local ls = require("luasnip")
         local types = require("luasnip.util.types")
+
+        ls.filetype_extend("dart", { "flutter" })
 
         local s = ls.snippet
         local sn = ls.snippet_node
