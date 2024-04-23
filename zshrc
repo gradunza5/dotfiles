@@ -71,11 +71,12 @@ export PATH=$PATH:$HOME/.rvm/bin
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
-# for dotnet tools
-export PATH="$PATH:/Users/benreeves/.dotnet/tools"
-
 # some mac stuff
 if [[ `uname` == "Darwin" ]]; then
+
+    # for dotnet tools
+    export PATH="$PATH:/Users/benreeves/.dotnet/tools"
+
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
 	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
 	
@@ -102,30 +103,31 @@ if [[ `uname` == "Darwin" ]]; then
     export JAVA_HOME=$JAVA_17_HOME
     export JDK_HOME=$JAVA_17_HOME
 
+    export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+    export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
+    export PATH="$PATH:$HOME/.pub-cache/bin"
+
+    #android tools
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/tools/android
+    export PATH=$PATH:$ANDROID_HOME/platforms
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
+
+    # react wants this, I guess
+    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+    export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+    
+    #add maven to path
+    export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
+
 fi
 
 # for dircolors
 #eval $(dircolors ~/.dircolors)
 
-#android tools
-export ANDROID_HOME=/Users/benreeves/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/android
-export PATH=$PATH:$ANDROID_HOME/platforms
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
-
-# react wants this, I guess
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-
-#add maven to path
-export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
-
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
-export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
-export PATH="$PATH:/Users/benreeves/.pub-cache/bin"
 
 alias x="exit"
 alias sd="sudo shutdown -h now"

@@ -30,11 +30,11 @@ return {
             vim.g.vimwiki_auto_chdir = 1
             vim.g.vimwiki_list = {
                 { --personal wiki
-                    path = "~/Drive/Drive/me/wiki",
-                    path_html = "~/Drive/Drive/me/wiki/html",
+                    path = "~/Wiki",
+                    path_html = "~/Wiki/html",
                     syntax = "markdown",
                     ext = "md",
-                    template_path = "~/Drive/Drive/work/me/template",
+                    template_path = "~/Wiki/template",
                     template_default = "default",
                     template_ext = ".tpl",
                     custom_wiki2html = "vimwiki_markdown",

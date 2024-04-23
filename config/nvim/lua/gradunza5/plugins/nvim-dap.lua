@@ -5,6 +5,7 @@ return {
         { "theHamsta/nvim-dap-virtual-text" },
         { "nvim-telescope/telescope-dap.nvim" },
         { "jbyuki/one-small-step-for-vimkind" },
+        { "nvim-neotest/nvim-nio" },
     },
     keys = {
         { "<leader>dR",  function() require("dap").run_to_cursor() end,                               desc = "[D]ebug: [R]un to Cursor", },
