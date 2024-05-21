@@ -1,0 +1,49 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+zinit snippet OMZP::macos
+zinit snippet OMZP::battery
+zinit snippet OMZP::flutter
+
+# for dotnet tools
+export PATH="$PATH:/Users/benreeves/.dotnet/tools"
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
+export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
+
+# for gnu ls and things
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+export MANPATH=/usr/pkg/man:$MANPATH
+
+# Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
+if [ -d "$GHC_DOT_APP" ]; then
+    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+fi
+
+#java home
+export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
+export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
+export JAVA_HOME=$JAVA_17_HOME
+export JDK_HOME=$JAVA_17_HOME
+
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+#android tools
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/android
+export PATH=$PATH:$ANDROID_HOME/platforms
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
+
+# react wants this, I guess
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+# add maven to path
+export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH

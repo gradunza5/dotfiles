@@ -26,4 +26,10 @@ return {
         name = "catppuccin",
         priority = 1000
     },
+    -- Lazy
+    {
+        "olimorris/onedarkpro.nvim",
+        --priority = 1000, -- Ensure it loads first
+        lazy = true,
+    }
 }

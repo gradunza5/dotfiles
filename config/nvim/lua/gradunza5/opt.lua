@@ -22,6 +22,7 @@ vim.opt.syntax = "on"
 vim.opt.termguicolors = false
 vim.opt.autoread = true
 vim.opt.colorcolumn = "100"
+vim.opt.textwidth = 100
 vim.opt.cursorline = true
 
 -- Decrease update time

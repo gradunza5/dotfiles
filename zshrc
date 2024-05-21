@@ -1,180 +1,108 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# SH_THEME="robbyrussell"
-#ZSH_THEME="mh"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# vim encryption!
-alias vime="vim -u ~/.vimencrc -x"
-
-# ctrl-backspace?
-bindkey '^K' backward-kill-word
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# ZSH Won't prompt for update, it'll just do it and probably fail.
-DISABLE_UPDATE_PROMPT=false
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-if [[ `uname` == "Darwin" ]]; then
-	plugins=(git macos dotnet flutter fzf)
-else
-	plugins=(git dotnet flutter fzf)
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $ZSH/oh-my-zsh.sh
+# set zinit directory 
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-# for syntax
-#source ~/.config/zsh/syntax.zsh
-
-# for qt
-export PATH=$PATH:/usr/local/qt4/bin
-
-# for ruby? Add RVM to PATH for scripting
-export PATH=$PATH:$HOME/.rvm/bin 
-
-# for go
-export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin
-
-# some mac stuff
-if [[ `uname` == "Darwin" ]]; then
-
-    # for dotnet tools
-    export PATH="$PATH:/Users/benreeves/.dotnet/tools"
-
-	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/X11/lib/pkgconfig
-	export PATH=/usr/pkg/bin:/usr/pkg/sbin:$PATH
-	
-    # for gnu ls and things
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-	export MANPATH=/usr/pkg/man:$MANPATH
-
-	alias updatedb="sudo /usr/libexec/locate.updatedb"
-	alias tmux="tmux -2"
-	alias ctags="/usr/local/bin/ctags"
-	export EDITOR="nvim"
-
-     #Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
-     export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
-     if [ -d "$GHC_DOT_APP" ]; then
-         export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-     fi
-     
-    #java home
-    export JAVA_13_HOME=$(/usr/libexec/java_home -v13)
-    export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
-    export JAVA_HOME=$JAVA_17_HOME
-    export JDK_HOME=$JAVA_17_HOME
-
-    export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
-    export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
-    export PATH="$PATH:$HOME/.pub-cache/bin"
-
-    #android tools
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=$PATH:$ANDROID_HOME/tools
-    export PATH=$PATH:$ANDROID_HOME/tools/android
-    export PATH=$PATH:$ANDROID_HOME/platforms
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
-    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
-
-    # react wants this, I guess
-    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-    export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-    export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-    
-    #add maven to path
-    export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
-
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# for dircolors
-#eval $(dircolors ~/.dircolors)
+# Source/Load Zinit
+source "${ZINIT_HOME}/zinit.zsh"
 
+# config for zsh vi mode - keep before plugin load
+function zvm_config() {
+    #ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
+    ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+}
 
+# plugins that modify keybinds need to be set up after vi mode loads; 
+# keep before plugin load
+function my_init() {
+    # fzf integration
+    eval "$(fzf --zsh)"
+    [[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
+      && source "$HOME/.fzf-extras/fzf-extras.zsh"
+
+    # zoxide
+    eval "$(zoxide init --cmd cd zsh)"
+
+    # eza 
+    if ! type "$eza" > /dev/null; then
+        export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
+
+        alias l="eza -lh"
+        alias v="eza -lah"
+    fi
+}
+
+zvm_after_init_commands+=(my_init)
+
+# Add Powerlevel10k (prompt)
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
+# load snippets from Oh-My-Zsh
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+# for completions
+autoload -U compinit && compinit
+
+# replays cached completions
+zinit cdreplay -q
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zocide_z:*' fzf preview 'ls --color $realpath'
+
+# set editor
+export EDITOR="nvim"
+
+# aliases 
+alias ls='ls --color'
 alias x="exit"
 alias sd="sudo shutdown -h now"
-
-alias l="ls -lh"
-alias v="ls -lah"
-
 alias gs="git status"
-
 alias mux="tmuxinator"
-
 alias nvim-exp='NVIM_APPNAME="nvim-exp" nvim'
 alias nvim-ks='NVIM_APPNAME="nvim-kickstart" nvim'
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# should be overwritten by exa
+alias l="ls -lh --color"
+alias v="ls -lah --color"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/mine/code/fzf-git.sh/fzf-git.sh ] && source ~/mine/code/fzf-git.sh/fzf-git.sh
-[ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-
-# eza completion
-if ! type "$eza" > /dev/null; then
-    export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
-
-    alias l="eza -lh"
-    alias v="eza -lah"
-fi
-
-# https://github.com/ajeetdsouza/zoxide
-if ! type "$z" > /dev/null; then
-    # zoxide (z) completion
-    eval "$(zoxide init zsh)"
-
-    alias fcd='echo "forcing dir change" && cd'
-    alias cd='z'
-fi 
-
-eval "$(starship init zsh)"
-
-[[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
-  && source "$HOME/.fzf-extras/fzf-extras.zsh"
-
-eval "$(fzf --zsh)"
+# local machine-specific overrides
+[[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
