@@ -3,6 +3,7 @@ return {
     {
         'numToStr/Comment.nvim',
         opts = {},
+        enabled = false,
     },
     {
         "folke/todo-comments.nvim",
