@@ -21,6 +21,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 function zvm_config() {
     #ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
     ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+    ZVM_VI_EDITOR=nvim
 }
 
 # plugins that modify keybinds need to be set up after vi mode loads; 
@@ -28,8 +29,14 @@ function zvm_config() {
 function my_init() {
     # fzf integration
     eval "$(fzf --zsh)"
+
     [[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
       && source "$HOME/.fzf-extras/fzf-extras.zsh"
+
+    [[ -e "$HOME/.fzf.zsh" ]] \
+      && source "$HOME/.fzf.zsh"
+
+    [ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
     # zoxide
     eval "$(zoxide init --cmd cd zsh)"
@@ -41,6 +48,12 @@ function my_init() {
         alias l="eza -lh"
         alias v="eza -lah"
     fi
+}
+
+function zvm_after_lazy_keybindings() {
+
+    zvm_bindkey viins '^G ^B' _fzf_git_branches
+
 }
 
 zvm_after_init_commands+=(my_init)
@@ -100,7 +113,7 @@ alias mux="tmuxinator"
 alias nvim-exp='NVIM_APPNAME="nvim-exp" nvim'
 alias nvim-ks='NVIM_APPNAME="nvim-kickstart" nvim'
 
-# should be overwritten by exa
+# if eza exists on the system, its config will overwrite this later
 alias l="ls -lh --color"
 alias v="ls -lah --color"
 
