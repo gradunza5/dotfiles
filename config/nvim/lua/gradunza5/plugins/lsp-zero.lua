@@ -265,6 +265,10 @@ return {
                 filetypes = { "markdown", "md", "vimwiki" },
                 single_file_support = false,
                 capabilities = capabilities,
+                on_init = function(client)
+                    -- client.server_capabilities.documentFormattingProvider = false,
+                    -- client.server_capabilities.documentFormattingRangeProvider = false,
+                end,
             })
             lspconfig.tsserver.setup({ capabilities = capabilities })
 

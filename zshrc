@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # set zinit directory 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -21,6 +14,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 function zvm_config() {
     #ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
     ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+    ZVM_VI_EDITOR=nvim
 }
 
 # plugins that modify keybinds need to be set up after vi mode loads; 
@@ -28,8 +22,14 @@ function zvm_config() {
 function my_init() {
     # fzf integration
     eval "$(fzf --zsh)"
+
     [[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
       && source "$HOME/.fzf-extras/fzf-extras.zsh"
+
+    [[ -e "$HOME/.fzf.zsh" ]] \
+      && source "$HOME/.fzf.zsh"
+
+    [ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
     # zoxide
     eval "$(zoxide init --cmd cd zsh)"
@@ -43,10 +43,13 @@ function my_init() {
     fi
 }
 
-zvm_after_init_commands+=(my_init)
+function zvm_after_lazy_keybindings() {
 
-# Add Powerlevel10k (prompt)
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+    zvm_bindkey viins '^G ^B' _fzf_git_branches
+
+}
+
+zvm_after_init_commands+=(my_init)
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -64,9 +67,6 @@ autoload -U compinit && compinit
 
 # replays cached completions
 zinit cdreplay -q
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # History
 HISTSIZE=5000
@@ -100,9 +100,12 @@ alias mux="tmuxinator"
 alias nvim-exp='NVIM_APPNAME="nvim-exp" nvim'
 alias nvim-ks='NVIM_APPNAME="nvim-kickstart" nvim'
 
-# should be overwritten by exa
+# if eza exists on the system, its config will overwrite this later
 alias l="ls -lh --color"
 alias v="ls -lah --color"
 
 # local machine-specific overrides
 [[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
+
+# enable starship
+eval "$(starship init zsh)"

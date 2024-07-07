@@ -1,6 +1,5 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"
 
-zinit snippet OMZP::macos
 zinit snippet OMZP::battery
 zinit snippet OMZP::flutter
 
