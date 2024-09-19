@@ -1,5 +1,6 @@
 -- escape remap
-vim.keymap.set("i", "jk", "<ESC>")
+-- vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("i", "ne", "<ESC>")
 
 -- absolute movement
 vim.keymap.set("n", "j", "gj")

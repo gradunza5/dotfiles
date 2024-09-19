@@ -13,7 +13,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 # config for zsh vi mode - keep before plugin load
 function zvm_config() {
     #ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
-    ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
     ZVM_VI_EDITOR=nvim
 }
 
@@ -29,7 +28,9 @@ function my_init() {
     [[ -e "$HOME/.fzf.zsh" ]] \
       && source "$HOME/.fzf.zsh"
 
-    [ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
+    #q
+    #
+    #[ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
     # zoxide
     eval "$(zoxide init --cmd cd zsh)"
@@ -38,15 +39,15 @@ function my_init() {
     if ! type "$eza" > /dev/null; then
         export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
 
-        alias l="eza -lh"
-        alias v="eza -lah"
+        alias l="eza -al --icons --git --color-scale -o"
+        alias v="eza -lah --icons --git --color-scale -o"
     fi
+
+    [[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
 }
 
 function zvm_after_lazy_keybindings() {
-
-    zvm_bindkey viins '^G ^B' _fzf_git_branches
-
+    zvm_bindkey viins '^G^B' _fzf_git_branches
 }
 
 zvm_after_init_commands+=(my_init)
@@ -58,12 +59,14 @@ zinit light Aloxaf/fzf-tab
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
 # load snippets from Oh-My-Zsh
+zinit ice lucid wait
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 
 # for completions
 autoload -U compinit && compinit
+zmodload zsh/complist
 
 # replays cached completions
 zinit cdreplay -q
@@ -92,7 +95,6 @@ zstyle ':fzf-tab:complete:__zocide_z:*' fzf preview 'ls --color $realpath'
 export EDITOR="nvim"
 
 # aliases 
-alias ls='ls --color'
 alias x="exit"
 alias sd="sudo shutdown -h now"
 alias gs="git status"
@@ -100,9 +102,12 @@ alias mux="tmuxinator"
 alias nvim-exp='NVIM_APPNAME="nvim-exp" nvim'
 alias nvim-ks='NVIM_APPNAME="nvim-kickstart" nvim'
 
-# if eza exists on the system, its config will overwrite this later
+# if eza exists on the system, its config will overwrite this later in `my_init`
 alias l="ls -lh --color"
 alias v="ls -lah --color"
+
+# PATH
+alias path='echo $PATH | sed "s#:#/\n#g"'
 
 # local machine-specific overrides
 [[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
