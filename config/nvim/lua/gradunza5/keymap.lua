@@ -1,5 +1,5 @@
 -- escape remap
--- vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("i", "jk", "<ESC>")
 -- vim.keymap.set("i", "ne", "<ESC>")
 
 -- absolute movement
@@ -99,10 +99,10 @@ vim.keymap.set("n", "<leader>f", function()
 end)
 
 -- quick fix navigation
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next [Q]uickfix Item" })
+vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Previous [Q]uickfix Item" })
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next [L]ocation List Item" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous [L]ocation List Item" })
 
 -- system copy/paste
 vim.keymap.set("n", "<leader>v", "\"+gp")
