@@ -1,6 +1,6 @@
 -- escape remap
--- vim.keymap.set("i", "jk", "<ESC>")
-vim.keymap.set("i", "ne", "<ESC>")
+vim.keymap.set("i", "jk", "<ESC>")
+-- vim.keymap.set("i", "ne", "<ESC>")
 
 -- absolute movement
 vim.keymap.set("n", "j", "gj")
@@ -28,9 +28,9 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Cursor to Middle for next diff/prev diff
-vim.keymap.set("n", "[c", "[czz", { desc = "Next git [C]hange" })
-vim.keymap.set("n", "]c", "]czz", { desc = "Previous git [C]hange" })
+-- Cursor to Middle for next diff/prev diff, and so they
+vim.keymap.set("n", "]c", "[czz", { desc = "Next git [C]hange" })
+vim.keymap.set("n", "[c", "]czz", { desc = "Previous git [C]hange" })
 
 -- Cursor to Middle for next issue/prev issue
 -- vim.keymap.set("n", "[d", "[dzz", { desc = "Next Diagnostic" })
@@ -51,8 +51,8 @@ vim.keymap.set('n', '<leader>dt', function()
 end, { desc = "[D]iagnostic [T]oggle" })
 
 -- Change spelling navigation to make sense (for me), and cursor to middle of screen
-vim.keymap.set("n", "[s", "[szz", { desc = "Next misspelled word" })
-vim.keymap.set("n", "]s", "]szz", { desc = "Previous misspelled word" })
+vim.keymap.set("n", "]s", "[szz", { desc = "Next misspelled word" })
+vim.keymap.set("n", "[s", "]szz", { desc = "Previous misspelled word" })
 
 -- Cursor to Middle for Search Next/Previous,
 vim.keymap.set("n", "n", "nzzzv")
@@ -99,10 +99,10 @@ vim.keymap.set("n", "<leader>f", function()
 end)
 
 -- quick fix navigation
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next [Q]uickfix Item" })
+vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Previous [Q]uickfix Item" })
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next [L]ocation List Item" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous [L]ocation List Item" })
 
 -- system copy/paste
 vim.keymap.set("n", "<leader>v", "\"+gp")
