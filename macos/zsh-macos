@@ -1,7 +1,6 @@
 eval "$(/usr/local/bin/brew shellenv)"
 
 zinit snippet OMZP::battery
-zinit snippet OMZP::flutter
 
 # for dotnet tools
 export PATH="$PATH:/Users/benreeves/.dotnet/tools"

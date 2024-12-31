@@ -10,49 +10,10 @@ fi
 # Source/Load Zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# config for zsh vi mode - keep before plugin load
-# function zvm_config() {
-#     #ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
-#     ZVM_VI_EDITOR=nvim
-# }
-
-# plugins that modify keybinds need to be set up after vi mode loads; 
-# keep before plugin load
-# function my_init() {
-#     # fzf integration
-#     eval "$(fzf --zsh)"
-#
-#     [[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
-#       && source "$HOME/.fzf-extras/fzf-extras.zsh"
-#
-#     [[ -e "$HOME/.fzf.zsh" ]] \
-#       && source "$HOME/.fzf.zsh"
-#
-#     # zoxide
-#     eval "$(zoxide init --cmd cd zsh)"
-#
-#     # eza 
-#     if ! type "$eza" > /dev/null; then
-#         export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
-#
-#         alias l="eza -al --icons --git --color-scale -o"
-#         alias v="eza -lah --icons --git --color-scale -o"
-#     fi
-#
-#     [[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
-# }
-
-# function zvm_after_lazy_keybindings() {
-#     zvm_bindkey viins '^G^B' _fzf_git_branches
-# }
-
-# zvm_after_init_commands+=(my_init)
-
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-# zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
 # load snippets from Oh-My-Zsh
 zinit ice lucid wait
@@ -80,12 +41,18 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Keybinds
+bindkey '^[[1;5D' backward-word  # Ctrl+Left
+bindkey '^[[1;5C' forward-word   # Ctrl+Right
+bindkey -M menuselect '^[[Z' reverse-menu-complete  # Shift+Tab
+setopt interactive_comments
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zocide_z:*' fzf preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # set editor
 export EDITOR="nvim"

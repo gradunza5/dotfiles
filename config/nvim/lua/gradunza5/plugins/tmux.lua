@@ -1,3 +1,4 @@
+-- TODO: replace with smart-splits.nvim for better kitty/wez mux integration
 return {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -16,4 +17,3 @@ return {
         { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
     },
 }
-
