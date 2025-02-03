@@ -2,7 +2,11 @@ return {
     {
         "chrisgrieser/nvim-various-textobjs",
         lazy = false,
-        opts = { useDefaultKeymaps = true },
+        opts = {
+            keymaps = {
+                useDefaults = true
+            }
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",

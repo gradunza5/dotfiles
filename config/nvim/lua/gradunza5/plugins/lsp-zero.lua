@@ -270,7 +270,7 @@ return {
                     -- client.server_capabilities.documentFormattingRangeProvider = false,
                 end,
             })
-            lspconfig.tsserver.setup({ capabilities = capabilities })
+            lspconfig.ts_ls.setup({ capabilities = capabilities })
 
             lsp.setup()
         end
