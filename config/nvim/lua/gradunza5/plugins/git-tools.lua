@@ -2,6 +2,7 @@
 return {
     {
         "tpope/vim-fugitive",
+        enabled = false,
         event = "FileType",
         keys = {
             { "<leader>gb", "<CMD>Git blame<CR>",  desc = "Git Blame Toggle" },
@@ -17,6 +18,7 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
+        enabled = false,
         config = function()
             require('gitsigns').setup {
                 on_attach = function(bufnr)

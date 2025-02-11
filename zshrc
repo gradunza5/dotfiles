@@ -63,6 +63,8 @@ alias sd="sudo shutdown -h now"
 alias gs="git status"
 alias mux="tmuxinator"
 
+alias ff="fastfetch"
+
 # if eza exists on the system, its config will overwrite this later in `my_init`
 alias l="ls -lh --color"
 alias v="ls -lah --color"

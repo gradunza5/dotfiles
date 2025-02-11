@@ -45,3 +45,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # add maven to path
 export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
+
+# AWS Cert Stuff
+export AWS_CA_BUNDLE="~/Downloads/ZscalerRootCertificate-2048-SHA256.crt"
+export AWS_PROFILE="ben_local_profile"

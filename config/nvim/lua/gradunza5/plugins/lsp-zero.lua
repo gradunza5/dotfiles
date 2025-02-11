@@ -137,7 +137,7 @@ return {
         dependencies = {
             { "williamboman/mason-lspconfig.nvim" },
             { "williamboman/mason.nvim" },
-            { "nvim-telescope/telescope.nvim" },
+            -- { "nvim-telescope/telescope.nvim" },
             { "j-hui/fidget.nvim" },
             { "folke/neodev.nvim" }
         },
@@ -161,7 +161,7 @@ return {
 
             -- Keybindings ":h lsp-zero-keybindings"
             local lsp = require("lsp-zero")
-            local telescope = require("telescope.builtin")
+            -- local telescope = require("telescope.builtin")
             lsp.on_attach(function(client, bufnr)
                 local opts = { buffer = bufnr }
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -177,8 +177,8 @@ return {
                     vim.tbl_extend("force", opts, { desc = "[G]o to [i]mplementation" }))
                 vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition,
                     vim.tbl_extend("force", opts, { desc = "[G]o to type definition" }))
-                vim.keymap.set("n", "<leader>gr", telescope.lsp_references,
-                    { buffer = true, desc = "[G]o to [R]eferences" })
+                -- vim.keymap.set("n", "<leader>gr", telescope.lsp_references,
+                --     { buffer = true, desc = "[G]o to [R]eferences" })
 
                 vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
                 vim.keymap.set("i", "<C-H>", vim.lsp.buf.signature_help, opts)

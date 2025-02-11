@@ -3,6 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     event = "VeryLazy",
+    enabled = false,
     keys = {
         {
             "<leader>fv",
