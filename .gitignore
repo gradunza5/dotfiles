@@ -3,3 +3,7 @@
 undodir
 
 **/spell
+
+# ignore this. Ideally, these will just be symlinks to a different location inside the
+# the dotfile repo
+config/ghostty/ghostty-local
