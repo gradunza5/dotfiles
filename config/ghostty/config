@@ -2,3 +2,5 @@ theme = "catppuccin-mocha"
 
 font-family = "Hack Nerd Font Mono"
 font-size = 13
+
+confirm-close-surface = false

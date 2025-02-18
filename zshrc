@@ -57,6 +57,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # set editor
 export EDITOR="nvim"
 
+alias vr='NVIM_APPNAME=nvim-renew nvim'
+
 # aliases 
 alias x="exit"
 alias sd="sudo shutdown -h now"
