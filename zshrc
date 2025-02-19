@@ -57,7 +57,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # set editor
 export EDITOR="nvim"
 
-alias vr='NVIM_APPNAME=nvim-renew nvim'
+alias vr='NVIM_APPNAME=nvim-renew ~/mine/code/tools/nvim-macos-x86_64/bin/nvim'
+alias vj='NVIM_APPNAME=nvim-jon ~/mine/code/tools/nvim-macos-x86_64/bin/nvim'
 
 # aliases 
 alias x="exit"
@@ -95,6 +96,16 @@ if ! type "$eza" > /dev/null; then
     alias l="eza -lh --icons --git --color-scale -o"
     alias v="eza -lha --icons --git --color-scale -o"
 fi
+
+# Yazi shell wrapper to cd when exiting
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # local machine-specific overrides
 [[ -e "$HOME/.zsh-local" ]] && source "$HOME/.zsh-local"
