@@ -1,4 +1,4 @@
---vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme catppuccin-mocha")
 
 -- SpellCheck
 vim.cmd("highlight clear SpellBad")
