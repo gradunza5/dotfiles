@@ -8,7 +8,8 @@ vim.keymap.set("n", "k", "gk")
 
 -- substitute word
 vim.keymap.set("n", "<leader>s",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Substitute Word" }
 )
 
 -- insert newline
