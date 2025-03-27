@@ -70,6 +70,7 @@ return {
                 null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", "2", "-ci" } }),
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.yamlfix,
+                null_ls.builtins.completion.tags,
             }
             null_ls.setup({ sources = sources })
         end,

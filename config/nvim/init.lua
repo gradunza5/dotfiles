@@ -1,1 +1,1 @@
-require("gradunza5")
+require("config")

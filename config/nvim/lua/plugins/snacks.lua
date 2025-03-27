@@ -8,6 +8,14 @@ return {
     lazy = false,
     -- stylua ignore start
     keys = {
+        { "<C-\\>",          function() Snacks.terminal.toggle() end,               mode = { "n", "t", },              desc = "Toggle Terminal", },
+        { "<C-F>",           function() Snacks.picker.grep() end,                   desc = "Grep" },
+        { "<C-S-p>",         function() Snacks.picker.commands() end,               desc = "Commands" },
+        { "<C-p>",           function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+        { "<C-M-p>",         function() Snacks.picker.lsp_workspace_symbols() end,  desc = "LSP Workspace Symbols" },
+        { "<C-M-i>",         function() Snacks.picker.icons() end,                  desc = "Icons/Emoji",              mode = "i" },
+        { "<leader>Wg",      function() Snacks.lazygit.open() end,                  desc = "LazyGit" },
+
         -- Top Pickers & Explorer
         { "<leader><space>", function() Snacks.picker.smart() end,                  desc = "Smart Find Files" },
         { "<leader>,",       function() Snacks.picker.buffers() end,                desc = "Buffers" },

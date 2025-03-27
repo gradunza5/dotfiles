@@ -1,7 +1,10 @@
 return {
     -- https://github.com/bullets-vim/bullets.vim
     {
-        "bullets-vim/bullets.vim"
+        "bullets-vim/bullets.vim",
+        init = function()
+            -- vim.g.bullets_outline_levels = {'ROM', 'ABC', 'num', 'abc', 'rom', 'std-'},
+        end
     },
     {
         -- https://github.com/MeanderingProgrammer/render-markdown.nvim
@@ -22,7 +25,7 @@ return {
                 enabled = false,
             },
         },
-        ft = { "markdown" },
+        ft = { "markdown", "md" },
     },
     {
         -- https://github.com/iamcco/markdown-preview.nvim
@@ -35,8 +38,8 @@ return {
             { "<leader>MT", "<cmd>MarkdownPreviewToggle<CR>", desc = "MarkdownPreviewToggle" },
         },
         init = function()
-            vim.g.mkdp_filetypes = { "markdown" }
+            vim.g.mkdp_filetypes = { "markdown", "md" }
         end,
-        ft = { "markdown" },
+        ft = { "markdown", "md" },
     }
 }
