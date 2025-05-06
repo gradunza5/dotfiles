@@ -122,7 +122,7 @@ return {
             ["]b"] = { query = "@block.outer", desc = "Next block" },
             ["]l"] = { query = "@loop.*", desc = "Next loop part" },
             ["]i"] = { query = "@conditional.outer", desc = "Next if" },
-            ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+            ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
             ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
           goto_next_end = {

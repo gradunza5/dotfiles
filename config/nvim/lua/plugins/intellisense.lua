@@ -1,5 +1,4 @@
 return {
-
     {
         -- https://github.com/Saghen/blink.cmp
         "saghen/blink.cmp",

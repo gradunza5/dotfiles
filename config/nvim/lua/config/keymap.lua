@@ -1,10 +1,16 @@
 -- escape remap
 vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("i", "dh", "<ESC>")
 -- vim.keymap.set("i", "ne", "<ESC>")
 
 -- absolute movement
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "k", function()
+    return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
+end, { expr = true })
+
+vim.keymap.set("n", "j", function()
+    return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
+end, { expr = true })
 
 -- substitute word
 vim.keymap.set("n", "<leader>s",
@@ -110,8 +116,6 @@ vim.keymap.set("n", "<leader>v", "\"+gp")
 vim.keymap.set("i", "<leader>v", "<esc>\"+gpa")
 vim.keymap.set("v", "<leader>c", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
-
-vim.keymap.set("i", "<C-Backspace>", "<esc>dawi<space>")
 
 vim.keymap.set("n", "<leader>wt", [[:%s/\s\+$//e<CR>]], { desc = "Trim Whitespace" })
 vim.keymap.set("n", "<leader>wr", [[:%s/\r//<CR>]], { desc = "Remove CR" })
