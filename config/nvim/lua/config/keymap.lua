@@ -23,6 +23,9 @@ vim.keymap.set("v", "<leader>lf",
     [[:s/\%V/\r/]]
 )
 
+-- gf opens new buffer if file doesn't exist
+vim.keymap.set("n", "gf", ":e <cfile><cr>")
+
 -- Move highlighted text up/down w/ shift JK
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

@@ -57,7 +57,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # set editor
 export EDITOR="nvim"
 
-alias vr='NVIM_APPNAME=nvim-renew ~/mine/code/tools/nvim-macos-x86_64/bin/nvim'
+alias vr='NVIM_APPNAME=nvim-renew nvim'
 alias vj='NVIM_APPNAME=nvim-jon ~/mine/code/tools/nvim-macos-x86_64/bin/nvim'
 
 # aliases 
