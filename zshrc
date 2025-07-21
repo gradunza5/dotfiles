@@ -68,6 +68,9 @@ alias mux="tmuxinator"
 
 alias ff="fastfetch"
 
+alias ..="cd .."
+alias ...="cd ../.."
+
 # if eza exists on the system, its config will overwrite this later in `my_init`
 alias l="ls -lh --color"
 alias v="ls -lah --color"
@@ -112,3 +115,6 @@ function y() {
 
 # enable starship
 eval "$(starship init zsh)"
+
+# Created by `pipx` on 2025-06-26 20:56:01
+export PATH="$PATH:/Users/benreeves/.local/bin"

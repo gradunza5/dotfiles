@@ -102,7 +102,7 @@ if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
+if.app-id = 'com.apple.safari'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -116,6 +116,10 @@ run = 'move-node-to-workspace 6'
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
 check-further-callbacks = true

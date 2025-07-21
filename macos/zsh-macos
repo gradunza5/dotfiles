@@ -1,4 +1,4 @@
-eval "$(/usr/local/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 zinit snippet OMZP::battery
 
@@ -26,7 +26,7 @@ export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
 export JAVA_HOME=$JAVA_17_HOME
 export JDK_HOME=$JAVA_17_HOME
 
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+#export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 export PATH="$PATH:/Users/benreeves/Library/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
@@ -47,7 +47,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=/usr/local/Cellar/maven/3.8.6/libexec:$PATH
 
 # AWS Cert Stuff
-export AWS_CA_BUNDLE="~/Downloads/ZscalerRootCertificate-2048-SHA256.crt"
+export AWS_CA_BUNDLE="~/ZscalerRootCertificate-2048-SHA256.crt"
 export AWS_PROFILE="ben_local_profile"
 
 # Local Bin
