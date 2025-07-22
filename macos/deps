@@ -1,0 +1,27 @@
+ghostty
+zsh
+neovim
+btop
+tmux
+tmuxinator
+tmuxinator-completion
+aerospace
+fzf
+zoxide
+starship
+rg
+eza
+font-hack-nerd-font
+raycast
+
+borders # https://github.com/FelixKratz/JankyBorders
+
+marksman
+yazi
+
+
+xcode
+ruby (brew)
+cocoapods (brew)
+android studio
+
