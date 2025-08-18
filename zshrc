@@ -80,11 +80,8 @@ alias path='echo $PATH | sed "s#:#/\n#g"'
 
 eval "$(fzf --zsh)"
 
-[[ -e "$HOME/.fzf.zsh" ]] \
-    && source "$HOME/.fzf.zsh"
-
-[[ -e "$HOME/.fzf-extras/fzf-extras.zsh" ]] \
-  && source "$HOME/.fzf-extras/fzf-extras.zsh"
+[[ -e "$HOME/.fzf-extras/fzf-extras.sh" ]] \
+  && source "$HOME/.fzf-extras/fzf-extras.sh"
 
 [[ -e "$HOME/.fzf-git.sh" ]] \
   && source "$HOME/.fzf-git.sh"
@@ -118,3 +115,9 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2025-06-26 20:56:01
 export PATH="$PATH:/Users/benreeves/.local/bin"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
