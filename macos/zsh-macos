@@ -4,6 +4,8 @@ zinit snippet OMZP::battery
 
 alias wttr="curl 'wttr.in/cranberry+twp?u'"
 
+alias yay="brew update && brew upgrade"
+
 # for dotnet tools
 export PATH="$PATH:/Users/benreeves/.dotnet/tools"
 

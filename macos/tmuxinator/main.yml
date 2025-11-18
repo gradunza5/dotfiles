@@ -63,8 +63,15 @@ windows:
   #     panes: 
   #       - git status
   #       - nvim
-  - ~:
-      root: ~/work/code/gdma/msa_grid_manager_app/
+  - manager:
+      root: ~/work/code/gdma/manager/
+      layout: 37e3,547x89,0,0{185x89,0,0[185x44,0,0,0,185x44,0,45,11],361x89,186,0,5}
+      panes:
+        - git status
+        - 
+        - nvim
+  - monitor:
+      root: ~/work/code/gdma/monitor/
       layout: 37e3,547x89,0,0{185x89,0,0[185x44,0,0,0,185x44,0,45,11],361x89,186,0,5}
       panes:
         - git status
