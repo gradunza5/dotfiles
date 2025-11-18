@@ -45,10 +45,11 @@ vim.keymap.set("n", "[c", "]czz", { desc = "Previous git [C]hange" })
 -- Cursor to Middle for next issue/prev issue
 -- vim.keymap.set("n", "[d", "[dzz", { desc = "Next Diagnostic" })
 -- vim.keymap.set("n", "]d", "]dzz", { desc = "Previous Diagnostic" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show [D]iagnostic [E]rror messages" })
+-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open [D]iagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show [D]iagnostic [E]rror messages" })
+vim.keymap.set("n", "?", vim.diagnostic.open_float, { desc = "Show [D]iagnostic [E]rror messages" })
 
 local diagnostics_active = true
 vim.keymap.set('n', '<leader>dt', function()
