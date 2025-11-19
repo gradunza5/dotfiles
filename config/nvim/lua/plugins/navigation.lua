@@ -8,6 +8,10 @@ return {
       { "<C-j>", function() require("smart-splits").move_cursor_down() end,  desc = "Move down one pane" },
       { "<C-k>", function() require("smart-splits").move_cursor_up() end,    desc = "Move up one pane" },
       { "<C-l>", function() require("smart-splits").move_cursor_right() end, desc = "Move right one pane" },
+      { "<C-A-m>", function() require("smart-splits").move_cursor_left() end,  desc = "Move left one pane" },
+      { "<C-A-n>", function() require("smart-splits").move_cursor_down() end,  desc = "Move down one pane" },
+      { "<C-A-e>", function() require("smart-splits").move_cursor_up() end,    desc = "Move up one pane" },
+      { "<C-A-i>", function() require("smart-splits").move_cursor_right() end, desc = "Move right one pane" },
     },
     -- stylua: ignore end
   },
