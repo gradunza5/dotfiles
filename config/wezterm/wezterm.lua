@@ -10,6 +10,16 @@ local config = wezterm.config_builder()
 local HJKL2DIRECTION = { h = "Left", j = "Down", k = "Up", l = "Right" }
 
 --------------------------------------------------------------------------------
+-- @SECTION general
+--------------------------------------------------------------------------------
+
+-- wayland support isn't there quite yet so we turn that off
+config.enable_wayland = false
+
+-- we want panes to stick around when their programs exit
+config.exit_behavior = "Hold"
+
+--------------------------------------------------------------------------------
 -- @SECTION functions
 --------------------------------------------------------------------------------
 --- Smart splits integration
@@ -96,32 +106,39 @@ end
 ---@return string|table[string, FormatItem] Title of tab
 local function format_tab(tab, tabs, panes, cfg, hover, max_width)
     local title = tab_title(tab)
+
     if tab.is_active then
         return {
+            { Foreground = { Color = colors.tab_bar.active_tab.bg_color } },
+            { Background = { Color = colors.tab_bar.background } },
+            { Text = wezterm.nerdfonts.ple_left_half_circle_thick },
             { Foreground = { Color = colors.tab_bar.active_tab.fg_color } },
             { Background = { Color = colors.tab_bar.active_tab.bg_color } },
             { Text = " " .. tostring(tab.tab_index) .. " " },
-            { Foreground = { Color = "#FFFFFF" } },
-            { Background = { Color = colors.tab_bar.background } },
+            { Foreground = { Color = colors.tab_bar.active_tab.fg_color } },
+            { Background = { Color = colors.tab_bar.active_tab.bg_color } },
             { Text = " " .. title .. " " },
+            { Foreground = { Color = colors.tab_bar.active_tab.bg_color } },
+            { Background = { Color = colors.tab_bar.background } },
+            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " "},
         }
     else
         return {
+            { Foreground = { Color = colors.tab_bar.new_tab.bg_color } },
+            { Background = { Color = colors.tab_bar.background } },
+            { Text = wezterm.nerdfonts.ple_left_half_circle_thick },
             { Foreground = { Color = colors.tab_bar.inactive_tab.fg_color } },
-            { Background = { Color = colors.tab_bar.inactive_tab_edge} },
+            { Background = { Color = colors.tab_bar.new_tab.bg_color } },
             { Text = " " .. tostring(tab.tab_index) .. " " },
-            { Foreground = { Color = "#AAAAAA" } },
-            { Background = { Color = colors.tab_bar.inactive_tab.bg_color } },
+            { Foreground = { Color = colors.tab_bar.inactive_tab.fg_color } },
+            { Background = { Color = colors.tab_bar.new_tab.bg_color } },
             { Text = " " .. title .. " " },
+            { Foreground = { Color = colors.tab_bar.new_tab.bg_color } },
+            { Background = { Color = colors.tab_bar.background } },
+            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " "},
         }
     end
 end
-
--- The filled in variant of the < symbol
-local SOLID_LEFT_CIRCLE = wezterm.nerdfonts.ple_left_half_circle_thin
-
--- The filled in variant of the > symbol
-local SOLID_RIGHT_CIRCLE = wezterm.nerdfonts.ple_right_half_circle_thin
 
 --------------------------------------------------------------------------------
 -- @SECTION keys
@@ -158,10 +175,67 @@ config.keys = {
     { key = "[", mods = "LEADER",      action = act.ActivateCopyMode },
 }
 
--- wayland support isn't there quite yet so we turn that off
-config.enable_wayland = false
-
+--------------------------------------------------------------------------------
+-- @SECTION events
+--------------------------------------------------------------------------------
 wezterm.on("format-tab-title", format_tab)
+wezterm.on("gui-startup", function (_)
+    -- https://wezterm.org/config/lua/pane/split.html
+    -- https://wezterm.org/config/lua/mux-window/spawn_tab.html
+
+    -- spawn main window with wiki and btop
+    local first_tab, pane, window = mux.spawn_window({
+        workspace = "main",
+        cwd = wezterm.home_dir
+    })
+
+    first_tab:set_title("main")
+
+    pane:split({
+        direction = "Right",
+        cwd = wezterm.home_dir .. "/Documents/wiki/",
+    }):send_text("nvim\n")
+
+    pane:split({
+        direction = "Top",
+    }):send_text("btop\n")
+
+    -- spawn tab with dotfiles open
+    local dots_tab, dots_pane, _= window:spawn_tab({
+        cwd = wezterm.home_dir .. "/.config"
+    })
+    dots_tab:set_title("dots")
+
+    dots_pane:split({
+        direction = "Right",
+    }):send_text("nvim\n")
+
+    -- spawn tab for manager
+    local mgr_tab, mgr_pane, _ = window:spawn_tab({
+        cwd = wezterm.home_dir .. "/work/code/gdma/manager/",
+    })
+    mgr_tab:set_title("manager")
+    mgr_pane:send_text("git status\n")
+
+    mgr_pane:split({
+        direction = "Right",
+    }):send_text("nvim\n")
+
+    -- spawn tab for monitor
+    local mon_tab, mon_pane, _ = window:spawn_tab({
+        cwd = wezterm.home_dir .. "/work/code/gdma/monitor/",
+    })
+    mon_tab:set_title("monitor")
+    mon_pane:send_text("git status\n")
+
+    mon_pane:split({
+        direction = "Right",
+    }):send_text("nvim\n")
+
+    mux.set_active_workspace("main")
+    act.ActivateTab(0)
+end)
+
 
 -- and finally, return the configuration to wezterm
 return config
