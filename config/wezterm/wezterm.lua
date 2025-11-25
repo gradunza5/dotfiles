@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local local_cfg = require("wezterm-local")
 local mux = wezterm.mux
 local act = wezterm.action
 
@@ -179,63 +180,8 @@ config.keys = {
 -- @SECTION events
 --------------------------------------------------------------------------------
 wezterm.on("format-tab-title", format_tab)
-wezterm.on("gui-startup", function (_)
-    -- https://wezterm.org/config/lua/pane/split.html
-    -- https://wezterm.org/config/lua/mux-window/spawn_tab.html
 
-    -- spawn main window with wiki and btop
-    local first_tab, pane, window = mux.spawn_window({
-        workspace = "main",
-        cwd = wezterm.home_dir
-    })
-
-    first_tab:set_title("main")
-
-    pane:split({
-        direction = "Right",
-        cwd = wezterm.home_dir .. "/Documents/wiki/",
-    }):send_text("nvim\n")
-
-    pane:split({
-        direction = "Top",
-    }):send_text("btop\n")
-
-    -- spawn tab with dotfiles open
-    local dots_tab, dots_pane, _= window:spawn_tab({
-        cwd = wezterm.home_dir .. "/.config"
-    })
-    dots_tab:set_title("dots")
-
-    dots_pane:split({
-        direction = "Right",
-    }):send_text("nvim\n")
-
-    -- spawn tab for manager
-    local mgr_tab, mgr_pane, _ = window:spawn_tab({
-        cwd = wezterm.home_dir .. "/work/code/gdma/manager/",
-    })
-    mgr_tab:set_title("manager")
-    mgr_pane:send_text("git status\n")
-
-    mgr_pane:split({
-        direction = "Right",
-    }):send_text("nvim\n")
-
-    -- spawn tab for monitor
-    local mon_tab, mon_pane, _ = window:spawn_tab({
-        cwd = wezterm.home_dir .. "/work/code/gdma/monitor/",
-    })
-    mon_tab:set_title("monitor")
-    mon_pane:send_text("git status\n")
-
-    mon_pane:split({
-        direction = "Right",
-    }):send_text("nvim\n")
-
-    mux.set_active_workspace("main")
-    act.ActivateTab(0)
-end)
-
+local_cfg.apply_to_config(config)
 
 -- and finally, return the configuration to wezterm
 return config
