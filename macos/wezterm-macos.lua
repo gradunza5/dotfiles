@@ -75,7 +75,7 @@ function module.apply_to_config(config)
 			:send_text("nvim\n")
 
 		mux.set_active_workspace("main")
-		act.ActivateTab(0)
+        first_tab:activate()
 	end)
 end
 
