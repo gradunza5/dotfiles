@@ -7,10 +7,19 @@ if [ ! -d "$ZINIT_HOME" ]; then
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# This is so that c-w breaks properly on things like slashes in a path
+# Source - https://stackoverflow.com/a/74986893
+# Posted by iloveitaly
+# Retrieved 2025-12-03, License - CC BY-SA 4.0
+#
+WORDCHARS=' *?_-.[]~=&;!#$%^(){}<>/'
+autoload -Uz select-word-style
+select-word-style normal
+zstyle ':zle:*' word-style unspecified
+
 # Source/Load Zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
@@ -122,3 +131,5 @@ export PATH="$PATH:/Users/benreeves/.local/bin"
 [[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+# this has to be at the end, or some word selection stuff breaks
+zinit light zsh-users/zsh-syntax-highlighting
