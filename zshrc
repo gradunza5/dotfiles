@@ -107,8 +107,10 @@ if ! type "$eza" > /dev/null; then
     alias v="eza -lha --icons --git --color-scale -o"
 fi
 
+alias y='yazi'
+
 # Yazi shell wrapper to cd when exiting
-function y() {
+function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
