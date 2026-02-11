@@ -85,6 +85,9 @@ outer.right = 10
 9 = 'secondary'
 0 = 'secondary'
 
+# https://nikitabobko.github.io/AeroSpace/goodies#popular-apps-ids
+# IDs are caps-sensitive!
+
 [[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
 run = 'move-node-to-workspace 1'
@@ -102,7 +105,7 @@ if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.safari'
+if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
