@@ -1,1 +1,1 @@
-/Users/benreeves/.dotfiles/macos/wezterm-macos.lua
+/home/ben/.dotfiles/_arch/wezterm-arch.lua

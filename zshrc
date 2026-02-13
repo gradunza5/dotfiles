@@ -81,6 +81,8 @@ alias ff="fastfetch"
 alias ..="cd .."
 alias ...="cd ../.."
 
+alias cls="clear"
+
 # if eza exists on the system, its config will overwrite this later in `my_init`
 alias l="ls -lh --color"
 alias v="ls -lah --color"
@@ -103,8 +105,8 @@ eval "$(zoxide init --cmd cd zsh)"
 if ! type "$eza" > /dev/null; then
     export FPATH="~/mine/code/tools/eza/completions/zsh:$FPATH"
 
-    alias l="eza -lh --icons --git --color-scale -o"
-    alias v="eza -lha --icons --git --color-scale -o"
+    alias l="eza -lh --icons --git --color-scale -o --group-directories-first"
+    alias v="eza -lha --icons --git --color-scale -o --group-directories-first"
 fi
 
 alias y='yazi'

@@ -121,7 +121,7 @@ local function format_tab(tab, tabs, panes, cfg, hover, max_width)
             { Text = " " .. title .. " " },
             { Foreground = { Color = colors.tab_bar.active_tab.bg_color } },
             { Background = { Color = colors.tab_bar.background } },
-            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " "},
+            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " " },
         }
     else
         return {
@@ -136,7 +136,7 @@ local function format_tab(tab, tabs, panes, cfg, hover, max_width)
             { Text = " " .. title .. " " },
             { Foreground = { Color = colors.tab_bar.new_tab.bg_color } },
             { Background = { Color = colors.tab_bar.background } },
-            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " "},
+            { Text = wezterm.nerdfonts.ple_right_half_circle_thick .. " " },
         }
     end
 end
@@ -162,6 +162,29 @@ config.keys = {
     split_nav("move", "j"),
     split_nav("move", "k"),
     split_nav("move", "l"),
+
+    {
+        key = 'Enter',
+        mods = 'CTRL',
+        action = wezterm.action_callback(function(win, pane)
+            local mux_tab = pane:tab()
+            local panes = mux_tab:panes()
+            if #panes == 1 then
+                return
+            end
+            local cur_pane_found = false
+            for _, p in ipairs(panes) do
+                if cur_pane_found then
+                    p:activate()
+                    return
+                end
+                if p:pane_id() == pane:pane_id() then
+                    cur_pane_found = true
+                end
+            end
+            panes[1]:activate()
+        end),
+    },
 
     { key = "n", mods = "LEADER|CTRL", action = act.ActivateTabRelative(1) },
     { key = "p", mods = "LEADER|CTRL", action = act.ActivateTabRelative(-1) },

@@ -6,7 +6,7 @@
     password: None,
     theme: None,
     cache_dir: None,
-    on_song_change: None,
+    on_song_change: ["~/.config/rmpc/notify"],
     volume_step: 5,
     max_fps: 30,
     scrolloff: 0,
@@ -15,18 +15,22 @@
     enable_config_hot_reload: true,
     status_update_interval_ms: 1000,
     rewind_to_start_sec: None,
-    reflect_changes_to_playlist: false,
-    select_current_song_on_change: false,
+    keep_state_on_song_change: true,
+    ignore_leading_the: false,
     browser_song_sort: [Disc, Track, Artist, Title],
     directories_sort: SortFormat(group_by_type: true, reverse: false),
     album_art: (
         method: Auto,
+        order: EmbeddedFirst,
         max_size_px: (width: 1200, height: 1200),
         disabled_protocols: ["http://", "https://"],
         vertical_align: Center,
         horizontal_align: Center,
     ),
+    normal_timeout_ms: 1000,
+    insert_timeout_ms: 1000,
     keybinds: (
+        clear: false,
         global: {
             ":":       CommandMode,
             ",":       VolumeDown,
@@ -92,11 +96,19 @@
             "K":         MoveUp,
             "D":         Delete,
             "B":         ShowInfo,
+<<<<<<< HEAD
+=======
+            "<C-z>":     ContextMenu(),
+            "<C-s>":     Save(kind: Modal(all: false, duplicates_strategy: Ask)),
+>>>>>>> 83ea1f8 (a bunch of stuff from arch)
         },
         queue: {
             "D":       DeleteAll,
             "<CR>":    Play,
+<<<<<<< HEAD
             "<C-s>":   Save,
+=======
+>>>>>>> 83ea1f8 (a bunch of stuff from arch)
             "a":       AddToPlaylist,
             "d":       Delete,
             "C":       JumpToCurrent,
@@ -105,6 +117,11 @@
     ),
     search: (
         case_sensitive: false,
+<<<<<<< HEAD
+=======
+        ignore_diacritics: false,
+        search_button: false,
+>>>>>>> 83ea1f8 (a bunch of stuff from arch)
         mode: Contains,
         tags: [
             (value: "any",         label: "Any Tag"),
@@ -119,6 +136,7 @@
     artists: (
         album_display_mode: SplitByDate,
         album_sort_by: Date,
+        album_date_tags: [Date],
     ),
     tabs: [
         (
@@ -154,4 +172,3 @@
         ),
     ],
 )
-
