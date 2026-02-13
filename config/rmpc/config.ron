@@ -96,19 +96,13 @@
             "K":         MoveUp,
             "D":         Delete,
             "B":         ShowInfo,
-<<<<<<< HEAD
-=======
             "<C-z>":     ContextMenu(),
             "<C-s>":     Save(kind: Modal(all: false, duplicates_strategy: Ask)),
->>>>>>> 83ea1f8 (a bunch of stuff from arch)
         },
         queue: {
             "D":       DeleteAll,
             "<CR>":    Play,
-<<<<<<< HEAD
             "<C-s>":   Save,
-=======
->>>>>>> 83ea1f8 (a bunch of stuff from arch)
             "a":       AddToPlaylist,
             "d":       Delete,
             "C":       JumpToCurrent,
@@ -117,11 +111,8 @@
     ),
     search: (
         case_sensitive: false,
-<<<<<<< HEAD
-=======
         ignore_diacritics: false,
         search_button: false,
->>>>>>> 83ea1f8 (a bunch of stuff from arch)
         mode: Contains,
         tags: [
             (value: "any",         label: "Any Tag"),
