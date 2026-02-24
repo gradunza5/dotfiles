@@ -96,8 +96,8 @@
             "K":         MoveUp,
             "D":         Delete,
             "B":         ShowInfo,
-            "<C-z>":     ContextMenu(),
-            "<C-s>":     Save(kind: Modal(all: false, duplicates_strategy: Ask)),
+            //"<C-z>":     ContextMenu(),
+            //"<C-s>":     Save(kind: Modal(all: false, duplicates_strategy: Ask)),
         },
         queue: {
             "D":       DeleteAll,

@@ -1,1 +1,0 @@
-/home/ben/.dotfiles/_arch/wezterm-arch.lua

@@ -20,4 +20,6 @@ if ! rmpc albumart --output "$ALBUM_ART_PATH"; then
 fi
 
 # Send the notification
-notify-send -i "${ALBUM_ART_PATH}" "Now Playing" "$ARTIST - $TITLE"
+if command -v notify-send >/dev/null 2>&1; then
+    notify-send -i "${ALBUM_ART_PATH}" "Now Playing" "$ARTIST - $TITLE" >/dev/null 2>&1
+fi
