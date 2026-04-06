@@ -60,7 +60,7 @@ vim.opt.breakindent = true
 vim.opt.showmode = false
 
 -- share system clipboard
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 -- undo
 vim.opt.swapfile = false
@@ -70,3 +70,6 @@ vim.opt.undofile = true
 
 -- add some diagnostic options
 vim.diagnostic.config({jump = {float = true }})
+
+-- wildmode settings
+vim.opt.wildmode = { "longest:full", "full" }

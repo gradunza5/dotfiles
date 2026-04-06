@@ -9,6 +9,7 @@ return {
     {
         -- https://github.com/MeanderingProgrammer/render-markdown.nvim
         "MeanderingProgrammer/render-markdown.nvim",
+        enabled = true,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
             "nvim-treesitter/nvim-treesitter",

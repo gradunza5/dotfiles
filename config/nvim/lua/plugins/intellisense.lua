@@ -3,7 +3,11 @@ return {
         -- https://github.com/Saghen/blink.cmp
         "saghen/blink.cmp",
         enabled = true,
-        version = "*",
+        version = "1.*",
+        dependencies = {
+          "rcarriga/cmp-dap",
+          "saghen/blink.compat",
+        },
 
         ---@module "blink.cmp"
         ---@type blink.cmp.Config
@@ -31,7 +35,7 @@ return {
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
                 -- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
-                default = { "lsp", "path", "snippets", "markdown" }, --"buffer" },
+                default = { "lsp", "path", "snippets", }, -- "markdown" }, --"buffer" },
                 providers = {
                     snippets = {
                         opts = {
@@ -41,11 +45,11 @@ return {
                             },
                         },
                     },
-                    markdown = {
-                        name = "RenderMarkdown",
-                        module = "render-markdown.integ.blink",
-                        fallbacks = { "lsp" },
-                    },
+                    -- markdown = {
+                    --     name = "RenderMarkdown",
+                    --     module = "render-markdown.integ.blink",
+                    --     fallbacks = { "lsp" },
+                    -- },
                 },
             },
 
