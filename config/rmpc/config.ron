@@ -6,6 +6,8 @@
     password: None,
     theme: None,
     cache_dir: None,
+    select_current_song_on_change: true,
+    center_current_song_on_change: true,
     on_song_change: ["~/.config/rmpc/notify"],
     volume_step: 5,
     max_fps: 30,
