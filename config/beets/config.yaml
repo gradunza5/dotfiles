@@ -1,0 +1,12 @@
+directory: ~/Music
+library: ~/Music/musiclibrary.db
+
+import:
+  move: yes
+
+plugins:
+  musicbrainz
+  fetchart
+
+fetchart:
+  auto: yes
