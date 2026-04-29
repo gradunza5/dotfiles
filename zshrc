@@ -137,3 +137,6 @@ export PATH="$PATH:/Users/benreeves/.local/bin"
 
 # this has to be at the end, or some word selection stuff breaks
 zinit light zsh-users/zsh-syntax-highlighting
+
+# Created by `pipx` on 2026-02-20 13:30:32
+export PATH="$PATH:/home/ben/.local/bin"

@@ -53,6 +53,9 @@ vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.signcolumn = "yes"
 
+-- command line
+vim.opt.wildmode = { "longest:full", "full" }
+
 -- break indenting
 vim.opt.breakindent = true
 
@@ -69,7 +72,7 @@ vim.opt.backup = false
 vim.opt.undofile = true
 
 -- add some diagnostic options
-vim.diagnostic.config({jump = {float = true }})
+vim.diagnostic.config({ jump = { float = true } })
 
 -- wildmode settings
 vim.opt.wildmode = { "longest:full", "full" }

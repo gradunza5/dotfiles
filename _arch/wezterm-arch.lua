@@ -34,7 +34,7 @@ function module.apply_to_config(config)
 
 		pane:split({
 			direction = "Right",
-		}):send_text("nvim\n")
+		}):send_text("ff\ncurl wttr.in/harmony_pa\n")
 
 		-- spawn tab with dotfiles open
 		local dots_tab, dots_pane, _ = window:spawn_tab({

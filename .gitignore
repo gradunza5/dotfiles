@@ -8,3 +8,7 @@ undodir
 # the dotfile repo
 config/ghostty/ghostty-local
 config/wezterm/wezterm-local.lua
+
+# ignoring beets local library stuff
+**/library.db
+**/state.pickle
