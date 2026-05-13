@@ -50,6 +50,7 @@ return {
         dependencies = {
             -- "hiasr/vim-zellij-navigator.nvim",
         },
+        
         -- stylua: ignore start
         keys = {
             { "<C-h>",   function() require("smart-splits").move_cursor_left() end,  desc = "Move left one pane" },
@@ -171,6 +172,7 @@ return {
     },
     {
         -- https://github.com/nvim-treesitter/nvim-treesitter
+        -- make sure tree-sitter-cli is installed!
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         -- "MeanderingProgrammer/treesitter-modules.nvim",
@@ -196,6 +198,7 @@ return {
                 "cpp",
                 "dart",
                 "doxygen",
+                "hyprlang",
                 "json",
                 "lua",
                 "luadoc",
