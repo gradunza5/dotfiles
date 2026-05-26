@@ -75,4 +75,5 @@ vim.opt.undofile = true
 vim.diagnostic.config({ jump = { float = true } })
 
 -- wildmode settings
+vim.opt.wildmenu = true
 vim.opt.wildmode = { "longest:full", "full" }
