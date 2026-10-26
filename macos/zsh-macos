@@ -65,3 +65,4 @@ export PATH=/usr/local/opt/make/libexec/gnubin/:$PATH
 [[ -f /Users/benreeves/.dart-cli-completion/zsh-config.zsh ]] && . /Users/benreeves/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+export TWG_BBC_TOKEN='YmVuLnJlZXZlc0BzYWZldHlpby5jb206QVRBVFQzeEZmR0YwQ20zRjdVR2FpMUItU3hNRDRZRFlMeW1yR1h1XzlzRWVXQzhhSmRTSWdOYmd0NjlzbHVJNFNMdFF1bThyWU9QSGo0ODhTaXRrQmd4OVZ6SFNrcGhPSGlzRU03NGFYcUZhelVmVTY5cWRUaHhaVS13MGpvR2RuSDRTc0Uxc3VkTnFPWmk3dG01YU9TMXBFU2VhOHdNLXdsdTdFdzFwQ1hTbV9TLXFpLUdFMzFFPUQ1QUM1MjBD'

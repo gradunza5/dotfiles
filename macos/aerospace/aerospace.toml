@@ -86,6 +86,7 @@ outer.right = 10
 0 = 'secondary'
 
 # https://nikitabobko.github.io/AeroSpace/goodies#popular-apps-ids
+# `aerospace list-apps`
 # IDs are caps-sensitive!
 
 [[on-window-detected]]
@@ -106,6 +107,14 @@ run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]

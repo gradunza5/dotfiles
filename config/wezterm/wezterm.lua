@@ -67,7 +67,7 @@ end
 --------------------------------------------------------------------------------
 -- font stuff
 config.font = wezterm.font("Hack Nerd Font Mono")
-config.font_size = 13
+config.font_size = 14
 
 -- tab bar and window styling
 config.enable_tab_bar = true

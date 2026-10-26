@@ -36,18 +36,6 @@ function module.apply_to_config(config)
 			direction = "Top",
 		}):send_text("btop\n")
 
-		-- spawn tab with dotfiles open
-		local dots_tab, dots_pane, _ = window:spawn_tab({
-			cwd = wezterm.home_dir .. "/.config",
-		})
-		dots_tab:set_title("dots")
-
-		dots_pane
-			:split({
-				direction = "Right",
-			})
-			:send_text("nvim\n")
-
 		-- spawn tab for manager
 		local mgr_tab, mgr_pane, _ = window:spawn_tab({
 			cwd = wezterm.home_dir .. "/work/code/gdma/manager/",
