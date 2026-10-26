@@ -21,7 +21,7 @@ function module.apply_to_config(config)
 	wezterm.on("gui-startup", function(_)
 		-- https://wezterm.org/config/lua/pane/split.html
 		-- https://wezterm.org/config/lua/mux-window/spawn_tab.html
-        --
+        
         local mux = wezterm.mux
 
 		-- spawn main window with wiki and btop
@@ -32,23 +32,25 @@ function module.apply_to_config(config)
 
 		first_tab:set_title("main")
 
-		pane:split({
-			direction = "Right",
-		}):send_text("ff\ncurl wttr.in/harmony_pa\n")
+		-- pane:split({
+		-- 	direction = "Right",
+		-- }):send_text("ff\ncurl wttr.in/harmony_pa\n")
 
-		-- spawn tab with dotfiles open
-		local dots_tab, dots_pane, _ = window:spawn_tab({
-			cwd = wezterm.home_dir .. "/.config",
-		})
-		dots_tab:set_title("dots")
+        pane:send_text("ff\ncurl wttr.in/harmony_pa\n")
 
-		dots_pane
-			:split({
-				direction = "Right",
-			})
-			:send_text("nvim\n")
-
-		mux.set_active_workspace("main")
+		-- -- spawn tab with dotfiles open
+		-- local dots_tab, dots_pane, _ = window:spawn_tab({
+		-- 	cwd = wezterm.home_dir .. "/.config",
+		-- })
+		-- dots_tab:set_title("dots")
+		--
+		-- dots_pane
+		-- 	:split({
+		-- 		direction = "Right",
+		-- 	})
+		-- 	:send_text("nvim\n")
+		--
+		-- mux.set_active_workspace("main")
 
         first_tab:activate()
         pane:activate()
